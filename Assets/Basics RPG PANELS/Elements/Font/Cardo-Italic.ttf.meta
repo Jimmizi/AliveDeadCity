@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: a250ce09599a35241a66fe0215af66a6
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Cardo
+  fontNames:
+  - Cardo
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1125cda64b4d19944bdcd3356d23b68d, type: 3}
+  - {fileID: 12800000, guid: 5f2a202c720a84846ad33a85b64a0d48, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
