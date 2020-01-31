@@ -1,0 +1,13 @@
+{
+  "Lines": 
+  [
+    {
+      "Speaker": "Test Speaker",
+      "Speech": "Test Speech"
+    },
+    {
+      "Speaker": "Test Speaker the second",
+      "Speech": "Test Speech the second"
+    }
+  ]
+}

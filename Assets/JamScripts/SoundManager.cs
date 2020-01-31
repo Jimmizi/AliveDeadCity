@@ -38,7 +38,6 @@ public class SoundManager : MonoBehaviour
 
     public List<SoundInstance> mSoundInstances = new List<SoundInstance>();
 
-
     void OnApplicationQuit()
     {
         foreach (var sound in mSoundInstances)
