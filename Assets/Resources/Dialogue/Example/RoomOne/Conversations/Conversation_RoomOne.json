@@ -1,0 +1,21 @@
+{
+    "Lines": [
+      {
+        "Speaker": "Speaker Tom",
+        "Speech": "Hey I'm Speaker Tom. Let me tell you about text adventures."
+      },
+      {
+        "Speaker": "Speaker Sky",
+        "Speech": "Sure thing Speaker Tom! I'd love to hear more about adventures."
+      },
+      {
+        "Speaker": "Speaker Tom",
+        "Speech": "But before that, have a choice..."
+      }
+    ],
+  
+    "EventsToFire": 
+    [
+      "RoomOne/Events/Event_FireRoomOneChoice"
+    ]
+}

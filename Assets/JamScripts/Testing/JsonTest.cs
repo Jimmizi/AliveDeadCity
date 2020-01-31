@@ -5,6 +5,9 @@ using UnityEngine;
 using System.IO;
 using UnityEditor;
 
+/// <summary>
+/// Use this to generate formats for how the data should be set up
+/// </summary>
 public class JsonTest : MonoBehaviour
 { 
     public TextAsset fileForChoiceData;
@@ -25,13 +28,18 @@ public class JsonTest : MonoBehaviour
         convData.Lines.Add(new ConversationData.LineData("Speaker Name", "Speech text"));
         convData.Lines.Add(new ConversationData.LineData("Speaker Name 2", "Speech text 2"));
 
+        convData.EventsToFire.Add("EventGiveWeapon");
+        convData.EventsToFire.Add("EventLoadStageOne");
+        convData.EventsToFire.Add("EventStartFight");
+
         EventData evtData = new EventData();
-        evtData.Type = EventData.EventType.Damage;
         evtData.DamagePartyMemberIndex = 0;
         evtData.DamageAmount = 50;
-        evtData.InventoryAction = EventData.InventoryEventType.Add;
         evtData.InventoryItemName = "sword";
-        evtData.OpenConversationFile = "file.json";
+
+        evtData.EventsToFire.Add("EventGiveWeapon");
+        evtData.EventsToFire.Add("EventLoadStageOne");
+        evtData.EventsToFire.Add("EventStartFight");
 
         string choiceText = JsonUtility.ToJson(choiceData);
         string convText = JsonUtility.ToJson(convData);
@@ -61,7 +69,7 @@ public class JsonTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventData evtData = JsonUtility.FromJson<EventData>(fileForEventData.text);
+        //TextAsset pathTxt = (TextAsset)Resources.Load("Dialogue/EventDefaultFormat", typeof(TextAsset));
 
         GenerateFileFormats();
 

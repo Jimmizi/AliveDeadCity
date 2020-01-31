@@ -31,14 +31,7 @@ public class ConversationData
     public List<LineData> Lines = new List<LineData>();
 
     /// <summary>
-    /// After the last line has finished, what conversation should we run next.
-    /// This has priority of loading if filled in.
+    /// List of events to fire. Only the first choice or conversation event is accepted if there are duplicates.
     /// </summary>
-    public string ConversationFileToRunNext;
-
-    /// <summary>
-    /// After the last line has finished, what event should we run next.
-    /// This has second priority of loading if filled in.
-    /// </summary>
-    public string EventFileToRunNext;
+    public List<string> EventsToFire = new List<string>();
 }

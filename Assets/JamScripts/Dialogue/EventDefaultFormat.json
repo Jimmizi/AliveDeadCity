@@ -1,9 +1,0 @@
-{
-  "Type": 0,
-  "DamagePartyMemberIndex": 0,
-  "DamageAmount": 50,
-  "OpenConversationFile": "file.json",
-  "OpenChoiceFile": "",
-  "InventoryAction": 0,
-  "InventoryItemName":"sword"
-}

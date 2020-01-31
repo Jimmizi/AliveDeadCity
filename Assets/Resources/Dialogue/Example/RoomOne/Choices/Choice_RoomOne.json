@@ -1,0 +1,13 @@
+{
+  "Choices": 
+  [
+    {
+      "Text": "Go To Room Two",
+      "EventFile": "RoomTwo/Events/Enter"
+    },
+    {
+      "Text": "Say What?",
+      "EventFile": "start"
+    }
+  ]
+}

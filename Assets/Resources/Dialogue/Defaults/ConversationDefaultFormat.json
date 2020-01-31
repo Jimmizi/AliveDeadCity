@@ -9,6 +9,10 @@
       "Speech": "Speech text 2"
     }
   ],
-  "ConversationFileToRunNext": "",
-  "EventFileToRunNext":""
+
+  "EventsToFire": [
+    "EventGiveWeapon",
+    "EventLoadStageOne",
+    "EventStartFight"
+  ]
 }

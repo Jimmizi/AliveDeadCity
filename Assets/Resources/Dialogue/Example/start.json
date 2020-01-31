@@ -1,0 +1,7 @@
+{
+  "Type": "event",
+  "EventsToFire": 
+  [
+    "RoomOne/Events/Enter"
+  ]
+}

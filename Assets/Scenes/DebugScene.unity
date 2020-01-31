@@ -153,6 +153,9 @@ MonoBehaviour:
   fileForEventData: {fileID: 4900000, guid: b287d437ae4e7c245a13941babfb75e8, type: 3}
   fileForConversationData: {fileID: 4900000, guid: ac7de7c4fb1851c4280207c3b5531d4b,
     type: 3}
+  UpdateDefaultChoiceFormat: 0
+  UpdateDefaultEventFormat: 0
+  UpdateDefaultConversationFormat: 0
 --- !u!4 &30966744
 Transform:
   m_ObjectHideFlags: 0
