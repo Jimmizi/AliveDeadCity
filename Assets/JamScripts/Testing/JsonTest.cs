@@ -6,41 +6,47 @@ using System.IO;
 using UnityEditor;
 
 public class JsonTest : MonoBehaviour
-{
-    class TestClass
+{ 
+    public TextAsset fileForChoiceData;
+    public TextAsset fileForEventData;
+    public TextAsset fileForConversationData;
+
+    void GenerateFileFormats()
     {
-        [Serializable]
-        public struct ConvoLine
-        {
-            public ConvoLine(string speakerStr, string speechStr)
-            {
-                Speaker = speakerStr;
-                Speech = speechStr;
-            }
-
-            public string Speaker;
-            public string Speech;
-        }
-
-        public List<ConvoLine> Lines = new List<ConvoLine>();
 
     }
-
-    public TextAsset jsonFile;
 
     // Start is called before the first frame update
     void Start()
     {
+        ChoiceData choiceData = new ChoiceData();
+        choiceData.Choices.Add(new ChoiceData.ChoiceOption("Sample text", "Next file to open"));
+        choiceData.Choices.Add(new ChoiceData.ChoiceOption("Sample text 2", "Next file to open 2"));
 
-        TestClass myObject = new TestClass();
-        myObject.Lines.Add(new TestClass.ConvoLine("Test Speaker", "Test Speech"));
-        myObject.Lines.Add(new TestClass.ConvoLine("Test Speaker the second", "Test Speech the second"));
+        ConversationData convData = new ConversationData();
+        convData.Lines.Add(new ConversationData.LineData("Speaker Name", "Speech text"));
+        convData.Lines.Add(new ConversationData.LineData("Speaker Name 2", "Speech text 2"));
 
-        string jsonTest = JsonUtility.ToJson(myObject);
-        TestClass newObject = JsonUtility.FromJson<TestClass>(jsonFile.text);
+        EventData evtData = new EventData();
+        evtData.Type = EventData.EventType.Damage;
+        evtData.DamagePartyMemberIndex = 0;
+        evtData.DamageAmount = 50;
+        evtData.InventoryAction = EventData.InventoryEventType.Add;
+        evtData.InventoryItemName = "sword";
+        evtData.OpenConversationFile = "file.json";
 
-        //File.WriteAllText(AssetDatabase.GetAssetPath(jsonFile), jsonTest);
-        //EditorUtility.SetDirty(jsonFile);
+        string choiceText = JsonUtility.ToJson(choiceData);
+        string convText = JsonUtility.ToJson(convData);
+        string evtText = JsonUtility.ToJson(evtData);
+
+
+        File.WriteAllText(AssetDatabase.GetAssetPath(fileForChoiceData), choiceText);
+        File.WriteAllText(AssetDatabase.GetAssetPath(fileForEventData), convText);
+        File.WriteAllText(AssetDatabase.GetAssetPath(fileForConversationData), evtText);
+
+        EditorUtility.SetDirty(fileForChoiceData);
+        EditorUtility.SetDirty(fileForEventData);
+        EditorUtility.SetDirty(fileForConversationData);
     }
 
     // Update is called once per frame

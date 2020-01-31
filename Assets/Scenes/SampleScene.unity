@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 30966744}
   - component: {fileID: 30966743}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: JsonTextFormatter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,6 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 288bf640a405f3c4095025bf84c6f64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileForChoiceData: {fileID: 4900000, guid: 7b212b9adc13b1443917204ece382714, type: 3}
+  fileForEventData: {fileID: 4900000, guid: b287d437ae4e7c245a13941babfb75e8, type: 3}
+  fileForConversationData: {fileID: 4900000, guid: ac7de7c4fb1851c4280207c3b5531d4b,
+    type: 3}
 --- !u!4 &30966744
 Transform:
   m_ObjectHideFlags: 0
