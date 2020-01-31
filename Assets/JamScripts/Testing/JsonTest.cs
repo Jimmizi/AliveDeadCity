@@ -11,13 +11,11 @@ public class JsonTest : MonoBehaviour
     public TextAsset fileForEventData;
     public TextAsset fileForConversationData;
 
+    public bool UpdateDefaultChoiceFormat;
+    public bool UpdateDefaultEventFormat;
+    public bool UpdateDefaultConversationFormat;
+
     void GenerateFileFormats()
-    {
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
     {
         ChoiceData choiceData = new ChoiceData();
         choiceData.Choices.Add(new ChoiceData.ChoiceOption("Sample text", "Next file to open"));
@@ -40,13 +38,36 @@ public class JsonTest : MonoBehaviour
         string evtText = JsonUtility.ToJson(evtData);
 
 
-        File.WriteAllText(AssetDatabase.GetAssetPath(fileForChoiceData), choiceText);
-        File.WriteAllText(AssetDatabase.GetAssetPath(fileForEventData), convText);
-        File.WriteAllText(AssetDatabase.GetAssetPath(fileForConversationData), evtText);
+        if (UpdateDefaultChoiceFormat)
+        {
+            File.WriteAllText(AssetDatabase.GetAssetPath(fileForChoiceData), choiceText);
+            EditorUtility.SetDirty(fileForChoiceData);
+        }
 
-        EditorUtility.SetDirty(fileForChoiceData);
-        EditorUtility.SetDirty(fileForEventData);
-        EditorUtility.SetDirty(fileForConversationData);
+        if (UpdateDefaultEventFormat)
+        {
+            File.WriteAllText(AssetDatabase.GetAssetPath(fileForEventData), evtText);
+            EditorUtility.SetDirty(fileForEventData);
+        }
+
+        if (UpdateDefaultConversationFormat)
+        {
+            File.WriteAllText(AssetDatabase.GetAssetPath(fileForConversationData), convText);
+            EditorUtility.SetDirty(fileForConversationData);
+        }
+
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        EventData evtData = JsonUtility.FromJson<EventData>(fileForEventData.text);
+
+        GenerateFileFormats();
+
+
+
+
     }
 
     // Update is called once per frame

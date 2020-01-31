@@ -8,7 +8,8 @@ public class EventData
     {
         Damage,
         Conversation,
-        InventoryChange
+        InventoryChange,
+        Choice
     }
 
     public enum InventoryEventType
@@ -42,6 +43,15 @@ public class EventData
     /// The conversation file to open next
     /// </summary>
     public string OpenConversationFile = "";
+
+    #endregion
+
+    #region Choice Event
+
+    /// <summary>
+    /// The choice file to open next
+    /// </summary>
+    public string OpenChoiceFile = "";
 
     #endregion
 

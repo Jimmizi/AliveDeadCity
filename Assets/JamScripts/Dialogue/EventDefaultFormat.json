@@ -1,13 +1,9 @@
 {
-  "Lines": 
-  [
-    {
-      "Speaker": "Speaker Name",
-      "Speech": "Speech text"
-    },
-    {
-      "Speaker": "Speaker Name 2",
-      "Speech": "Speech text 2"
-    }
-  ]
+  "Type": 0,
+  "DamagePartyMemberIndex": 0,
+  "DamageAmount": 50,
+  "OpenConversationFile": "file.json",
+  "OpenChoiceFile": "",
+  "InventoryAction": 0,
+  "InventoryItemName":"sword"
 }

@@ -25,5 +25,20 @@ public class ConversationData
         public string Speech;
     }
 
+    /// <summary>
+    /// Lines in this section of dialogue
+    /// </summary>
     public List<LineData> Lines = new List<LineData>();
+
+    /// <summary>
+    /// After the last line has finished, what conversation should we run next.
+    /// This has priority of loading if filled in.
+    /// </summary>
+    public string ConversationFileToRunNext;
+
+    /// <summary>
+    /// After the last line has finished, what event should we run next.
+    /// This has second priority of loading if filled in.
+    /// </summary>
+    public string EventFileToRunNext;
 }
