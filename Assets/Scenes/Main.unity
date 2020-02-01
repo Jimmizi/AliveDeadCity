@@ -566,7 +566,7 @@ PrefabInstance:
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
       propertyPath: OtherNames.Array.data[0]
-      value: COMMANDER
+      value: COMMAND
       objectReference: {fileID: 0}
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}

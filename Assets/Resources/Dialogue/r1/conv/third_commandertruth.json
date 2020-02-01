@@ -3,10 +3,10 @@
     [
         {
             "Speaker": "Agent Scully",
-            "Speech": "The terrain looks hostile Commander. Can't proceed without intel."
+            "Speech": "The terrain looks hostile Command. Can't proceed without intel."
         },
         {
-            "Speaker": "COMMANDER",
+            "Speaker": "COMMAND",
             "Speech": "I'm sending it to Glados as we speak. Complete the mission soldier, there are lives at stake."
         },
         {
