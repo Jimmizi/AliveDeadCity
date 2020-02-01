@@ -28,6 +28,10 @@ public class ChatBox : MonoBehaviour
     /// </summary>
     public float TimeBetweenCharacters = 0.1f;
 
+    public float UnderscorePauseTime = 0.5f;
+    public float CommaPauseTime = 0.1f;
+    public float PeriodPauseTime = 0.25f;
+
     #endregion
 
     private float mConvEndOfLineSkipTimer = 0.0f;
@@ -43,6 +47,11 @@ public class ChatBox : MonoBehaviour
     private bool mProcessingChat;
 
     private bool mNeedEndOfLineMarker;
+
+    /// <summary>
+    /// How long to pause for a underscore
+    /// </summary>
+    private float mUnderscorePauseTimer = 0.0f;
 
     /// <summary>
     /// If true, this is a conversation, if false this is a choice
@@ -64,6 +73,9 @@ public class ChatBox : MonoBehaviour
     /// </summary>
     private int mCurrentLineChar;
 
+    /// <summary>
+    /// Time before displaying the next character
+    /// </summary>
     private float mCharacterTimer;
 
     #endregion
@@ -75,6 +87,7 @@ public class ChatBox : MonoBehaviour
     #endregion
 
     private bool mNextLinePressed;
+    private bool mLineComplete;
 
     private void SetSpeakerName()
     {
@@ -114,6 +127,7 @@ public class ChatBox : MonoBehaviour
         SetSpeakerName();
         SpeechTextComponent.text = "";
         mCurrentLineChar = 0;
+        mLineComplete = false;
     }
 
     /// <summary>
@@ -186,6 +200,12 @@ public class ChatBox : MonoBehaviour
 
     public void ChoicePressed(int choice)
     {
+        if (mCurrentChoiceData?.Choices == null
+            || mCurrentChoiceData.Choices.Count == 0)
+        {
+            return;
+        }
+
         Debug.Log("Choice pressed: " + choice);
         if (mChoicePicked == -1 && choice < mCurrentChoiceData.Choices.Count)
         {
@@ -216,17 +236,42 @@ public class ChatBox : MonoBehaviour
         if (mCurrentConvLine >= 0)
         {
             //Iterate and append text until we've added it all
-            if (SpeechTextComponent.text.Length < mCurrentConversationData.Lines[mCurrentConvLine].Speech.Length)
+            if (!mLineComplete)
             {
+                if (mUnderscorePauseTimer > 0.0f && !Service.Test().IgnoreTextPauses)
+                {
+                    mUnderscorePauseTimer -= Time.deltaTime;
+                    return;
+                }
+
                 //If delay time is reached, append, if not add to the timer
                 if (mCharacterTimer >= TimeBetweenCharacters)
                 {
                     mCharacterTimer = 0.0f;
 
-                    //TODO Special timing characters
-
-                    SpeechTextComponent.text += mCurrentConversationData.Lines[mCurrentConvLine].Speech
+                    var nextChar = mCurrentConversationData.Lines[mCurrentConvLine].Speech
                         .Substring(mCurrentLineChar++, 1);
+
+                    //Completely gets skipped
+                    if (nextChar.Equals("_"))
+                    {
+                        mUnderscorePauseTimer = UnderscorePauseTime;
+                        return;
+                    }
+                    else
+                    {
+                        //These only add to the pause timer, also get added
+                        if (nextChar.Equals(","))
+                        {
+                            mUnderscorePauseTimer = CommaPauseTime;
+                        }
+                        else if (nextChar.Equals("."))
+                        {
+                            mUnderscorePauseTimer = PeriodPauseTime;
+                        }
+
+                        SpeechTextComponent.text += nextChar;
+                    }
                 }
                 else
                 {
@@ -238,7 +283,9 @@ public class ChatBox : MonoBehaviour
                     SpeechTextComponent.text = mCurrentConversationData.Lines[mCurrentConvLine].Speech;
                 }
 
-                if (SpeechTextComponent.text.Length >= mCurrentConversationData.Lines[mCurrentConvLine].Speech.Length)
+                mLineComplete = mCurrentLineChar >= mCurrentConversationData.Lines[mCurrentConvLine].Speech.Length;
+
+                if (mLineComplete)
                 {
                     NextLineMarker.transform.position = mLineMarkerStartPos;
                     StartCoroutine(FadeLineMarkerGroup(0.0f, 1.0f, 0.5f));

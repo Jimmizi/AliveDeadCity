@@ -16,6 +16,11 @@ public class Testing : MonoBehaviour
     /// </summary>
     public bool AutomaticEndOfLineSkip;
 
+    /// <summary>
+    /// Don't let the text pause when hitting punctuation.
+    /// </summary>
+    public bool IgnoreTextPauses;
+
     void Awake()
     {
         Service.Provide(this);

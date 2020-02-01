@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: e60bf85edb8d7ca40b89f6095f2bfa0f
   - enabled: 1
-    path: Assets/Scenes/RoomOne.unity
+    path: Assets/Scenes/web_room_spider.unity
     guid: 6197953344f408d4283933c555ac3187
   - enabled: 1
     path: Assets/Scenes/RoomTwo.unity
     guid: dda545301c139cb498442724e5b95c6a
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 79cb364be51e40f4a8be1550b83e1304
   m_configObjects: {}

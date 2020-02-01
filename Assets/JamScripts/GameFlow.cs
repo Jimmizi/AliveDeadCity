@@ -28,6 +28,8 @@ public class GameFlow : MonoBehaviour
     private CurrentTextFormat mStartFormat;
     private string mStartJsonText;
 
+    private bool mGameDone = false;
+
     void Awake()
     {
         Service.Provide(this);
@@ -49,18 +51,21 @@ public class GameFlow : MonoBehaviour
             return;
         }
 
-        if (!mExecuter.Processing)
+        if (!mGameDone)
         {
-            mExecuter.GiveJsonToExecute(mStartFormat, mStartJsonText);
-        }
-        else
-        {
-            if (mExecuter.Update())
+            if (!mExecuter.Processing)
             {
-
+                mExecuter.GiveJsonToExecute(mStartFormat, mStartJsonText);
+            }
+            else
+            {
+                if (mExecuter.Update())
+                {
+                    //throw new NotImplementedException("End screen not implemented");
+                    mGameDone = true;
+                }
             }
         }
-        
-        
+
     }
 }

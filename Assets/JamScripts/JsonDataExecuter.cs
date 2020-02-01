@@ -108,6 +108,10 @@ public class JsonDataExecuter
         {
             Service.Party().PartyHealth[memberIndex] -= damage;
         }
+        else
+        {
+            Service.Party().KillParty();
+        }
 
         return true;
     }
@@ -143,11 +147,18 @@ public class JsonDataExecuter
                     Service.UI().FadeScreenOut();
                     return false;
                 }
+
+                return false;
             }
             else if (Service.UI().IsScreenFadeTransitioning)
             {
                 return false;
             }
+        }
+
+        if(mCurrentEvent.SceneName.ToLower().Equals("credits"))
+        {
+            Service.UI().SetCameraFaderAlpha(false);
         }
         
         //Make sure to unload the last scene
@@ -255,7 +266,7 @@ public class JsonDataExecuter
             mCurrentEvent = null;
         }
 
-        return mQueuedEvents.Count <= 0;
+        return mQueuedEvents.Count <= 0 && mCurrentEvent == null;
     }
 
     #endregion
@@ -290,7 +301,7 @@ public class JsonDataExecuter
                         else
                         {
                             //done with the adventure
-                            //TODO Ending screen
+                            return true;
                         }
                     }
                 }

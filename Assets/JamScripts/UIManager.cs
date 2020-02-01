@@ -39,7 +39,7 @@ public class UiManager : MonoBehaviour
     private ShowPanels showPanels;										//Reference to ShowPanels script on UI GameObject, to show and hide panels
     private CanvasGroup[] menuCanvasGroup;
 
-    void SetCameraFaderAlpha(bool active)
+    public void SetCameraFaderAlpha(bool active)
     {
         foreach (var fader in CameraFaderObjects)
         {

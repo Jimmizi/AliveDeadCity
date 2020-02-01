@@ -4,6 +4,10 @@
     {
       "Text": "[Leave]",
       "EventFile": "Example/RoomTwo/Events/Enter"
+    },
+    {
+      "Text": "[Credits]",
+      "EventFile": "Example/goToCredits"
     }
   ]
 }

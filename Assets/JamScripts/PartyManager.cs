@@ -21,6 +21,14 @@ public class PartyManager : MonoBehaviour
 
     public int[] PartyHealth = new int[MAX_PARTY_MEMBERS] {DEFAULT_HEALTH, DEFAULT_HEALTH, DEFAULT_HEALTH};
 
+    public void KillParty()
+    {
+        for (int i = 0; i < MAX_PARTY_MEMBERS; i++)
+        {
+            PartyHealth[i] = 0;
+        }
+    }
+
     void Awake()
     {
         Service.Provide(this);
