@@ -44,7 +44,7 @@ public class GameFlow : MonoBehaviour
 
     void Update()
     {
-        if (!Service.UI().InGame)
+        if (Service.UI() != null && !Service.UI().InGame)
         {
             return;
         }

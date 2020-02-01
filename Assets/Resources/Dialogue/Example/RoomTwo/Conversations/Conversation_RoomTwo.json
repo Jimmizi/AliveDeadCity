@@ -1,20 +1,16 @@
 {
     "Lines": [
         {
-            "Speaker": "Speaker Sky",
-            "Speech": "Oh wow, we moved to room two!"
+            "Speaker": "[You]",
+            "Speech": "Lets get the hell out of here!"
         },
         {
-            "Speaker": "Speaker Tom",
-            "Speech": "Indeed we are Speaker Sky."
+            "Speaker": "",
+            "Speech": "As you move back."
         },
         {
-            "Speaker": "Speaker Sky",
-            "Speech": "I can't believe it. That was fast!"
-        },
-        {
-            "Speaker": "Speaker Tom Fast",
-            "Speech": "Fast is my middl-, no, last name..."
+            "Speaker": "COMMANDER",
+            "Speech": "Sewers got you dizzy soldier? Get your ass back in there Agent Scully"
         }
     ],
   
