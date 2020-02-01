@@ -7,7 +7,7 @@
     },
     {
       "Text": "Say What?",
-      "EventFile": "start"
+      "EventFile": "Example/start"
     }
   ]
 }

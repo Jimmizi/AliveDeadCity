@@ -3,7 +3,7 @@
     [
       {
         "Text": "Here we go again...",
-        "EventFile": "start"
+        "EventFile": "Example/start"
       }
     ]
 }

@@ -62,7 +62,7 @@ public class JsonDataExecuter
     {
         var eventFile = (TextAsset)Resources.Load("Dialogue/" + eventName, typeof(TextAsset));
 
-        Assert.IsNotNull(eventFile);
+        Assert.IsNotNull(eventFile, "Unable to load event file " + eventName);
 
         LoadEvent(eventFile.text);
     }
@@ -155,7 +155,7 @@ public class JsonDataExecuter
         Assert.IsNull(mCurrentChoiceData, "choice was already loaded when we tried to add a new one: " + mCurrentEvent.OpenChoiceFile);
         Assert.IsNotNull(choiceFile, "failed to load choice " + mCurrentEvent.OpenChoiceFile);
 
-        LoadConversation(choiceFile.text);
+        LoadChoice(choiceFile.text);
 
         return true;
     }
@@ -261,8 +261,14 @@ public class JsonDataExecuter
                     }
                     else
                     {
+                        Service.Chat().EndCleanup();
+
                         //Done with chatbox, fire any events off
                         AddEventNamesToQueue(mCurrentConversationData.EventsToFire);
+
+                        //Conversations always launch events
+                        mFormatProcessing = CurrentTextFormat.Event;
+                        mCurrentConversationData = null;
                     }
                 }
                 break;
@@ -275,8 +281,14 @@ public class JsonDataExecuter
                     }
                     else
                     {
+                        Service.Chat().EndCleanup();
+
                         //Done with chatbox, fire any events off
                         AddEventNameToQueue(mCurrentChoiceData.Choices[mCurrentChoiceData.ChoiceTaken].EventFile);
+
+                        //Choices always launch events
+                        mFormatProcessing = CurrentTextFormat.Event;
+                        mCurrentChoiceData = null;
                     }
                 }
                 break;

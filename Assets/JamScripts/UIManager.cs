@@ -24,9 +24,7 @@ public class UiManager : MonoBehaviour
     public float TitleScreenEndYPos;
 
     public float StartToIdleTime = 3.0f;
-
-    public bool DebugSkipTitleScreen;
-
+    
     public CanvasGroup FaderForBackToOrigin;
 
     [HideInInspector]
@@ -50,17 +48,14 @@ public class UiManager : MonoBehaviour
 		//Get all canvas grounds in my childen, we want to fade them all out at the same time
         menuCanvasGroup = GetComponentsInChildren<CanvasGroup>();
 
-        if (!DebugSkipTitleScreen)
-        {
-            var pos = Camera.main.transform.position;
-            pos.y = TitleScreenStartYPos;
-            Camera.main.transform.position = pos;
-        }
+        var pos = Camera.main.transform.position;
+        pos.y = TitleScreenStartYPos;
+        Camera.main.transform.position = pos;
     }
 
     void Start()
     {
-        if (DebugSkipTitleScreen)
+        if (Service.Test().SkipTitle)
         {
             SceneManager.UnloadSceneAsync("TitleScreen");
             Camera.main.transform.position = new Vector3(0, 0, -10);

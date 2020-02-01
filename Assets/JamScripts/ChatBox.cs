@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -23,6 +24,8 @@ public class ChatBox : MonoBehaviour
     public float TimeBetweenCharacters = 0.1f;
 
     #endregion
+
+    private float mConvEndOfLineSkipTimer = 0.0f;
 
     private ConversationData mConversationToDisplay;
 
@@ -57,7 +60,13 @@ public class ChatBox : MonoBehaviour
     private float mCharacterTimer;
 
     #endregion
-    
+
+    #region Choice Vars
+
+    private int mChoicePicked = -1;
+
+    #endregion
+
     /// <summary>
     /// Reset the conversation text box, and set the speaker for the current line about to be spoken
     /// </summary>
@@ -76,7 +85,6 @@ public class ChatBox : MonoBehaviour
         mCurrentConvLine = 0;
         mCurrentLineChar = 0;
         mProcessingChat = true;
-        AlphaGroup.alpha = 1f;
     }
 
     /// <summary>
@@ -88,6 +96,9 @@ public class ChatBox : MonoBehaviour
         mIsConversation = true;
         mCurrentConversationData = conv;
         mCurrentChoiceData = null;
+
+        SetButtons(false);
+        StartCoroutine(FadeChatGroup(0.0f, 1.0f, 0.5f));
 
         SetReadyToStart();
         ResetConversationToCurrentLine();
@@ -103,18 +114,55 @@ public class ChatBox : MonoBehaviour
         mCurrentChoiceData = choice;
         mCurrentConversationData = null;
 
-        ButtonAlphaGroup.alpha = 1.0f;
+        SpeechTextComponent.text = "";
+        SpeakerTextComponent.text = "";
+        mChoicePicked = -1;
+
+        SetButtons(false, true);
+
+        for (var i = 0; i < choice.Choices.Count; i++)
+        {
+            var textComp = ChoiceButtons[i].GetComponentInChildren<Text>();
+            if (textComp != null)
+            {
+                textComp.text = String.Format("[{0}] " + choice.Choices[i].Text, i);
+            }
+        }
+
+        StartCoroutine(FadeChoiceGroup(0.0f, 1.0f, 0.5f));
 
         SetReadyToStart();
     }
 
-    void EndChat()
+    public void EndCleanup()
     {
         mCurrentConversationData = null;
         mCurrentChoiceData = null;
+    }
+
+    public void ChoicePressed(int choice)
+    {
+        Debug.Log("Choice pressed: " + choice);
+        if (mChoicePicked == -1 && choice < mCurrentChoiceData.Choices.Count)
+        {
+            Debug.Log("Choice locked in");
+            mChoicePicked = choice;
+            SetButtons(false);
+        }
+    }
+
+    void EndChat()
+    {
         mProcessingChat = false;
-        AlphaGroup.alpha = 0;
-        ButtonAlphaGroup.alpha = 0;
+
+        if (mIsConversation)
+        {
+            StartCoroutine(FadeChatGroup(1.0f, 0.0f, 0.5f));
+        }
+        else
+        {
+            StartCoroutine(FadeChoiceGroup(1.0f, 0.0f, 0.5f));
+        }
     }
 
     private void ProcessConversation()
@@ -140,12 +188,30 @@ public class ChatBox : MonoBehaviour
                     mCharacterTimer += Time.deltaTime;
                 }
 
+                if (Service.Test().InstantText)
+                {
+                    SpeechTextComponent.text = mCurrentConversationData.Lines[mCurrentConvLine].Speech;
+                }
+
                 return;
             }
             //If we're done with appending text, wait until the player has pressed something to advance text
             else if (!Input.anyKey)
             {
-                return;
+                if (!Service.Test().AutomaticEndOfLineSkip)
+                {
+                    return;
+                }
+                else
+                {
+                    if (mConvEndOfLineSkipTimer < 0.75f)
+                    {
+                        mConvEndOfLineSkipTimer += Time.deltaTime;
+                        return;
+                    }
+
+                    mConvEndOfLineSkipTimer = 0;
+                }
             }
             
             if (mCurrentConvLine < mCurrentConversationData.Lines.Count - 1)
@@ -171,7 +237,54 @@ public class ChatBox : MonoBehaviour
 
     void ProcessChoice()
     {
-
+        if (mChoicePicked == -1)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                if (mCurrentChoiceData.Choices.Count >= 1)
+                {
+                    Debug.Log("Choice key 1 pressed.");
+                    mChoicePicked = 0;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                if (mCurrentChoiceData.Choices.Count >= 2)
+                {
+                    Debug.Log("Choice key 2 pressed.");
+                    mChoicePicked = 1;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                if (mCurrentChoiceData.Choices.Count >= 3)
+                {
+                    Debug.Log("Choice key 3 pressed.");
+                    mChoicePicked = 2;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                if (mCurrentChoiceData.Choices.Count >= 4)
+                {
+                    Debug.Log("Choice key 4 pressed.");
+                    mChoicePicked = 3;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                if (mCurrentChoiceData.Choices.Count >= 5)
+                {
+                    Debug.Log("Choice key 5 pressed.");
+                    mChoicePicked = 4;
+                }
+            }
+        }
+        else
+        {
+            mCurrentChoiceData.ChoiceTaken = mChoicePicked;
+            EndChat();
+        }
     }
 
     void Awake()
@@ -201,4 +314,70 @@ public class ChatBox : MonoBehaviour
         }
     }
 
+    private void SetButtons(bool interactable, bool resetText = false)
+    {
+        int currentChoices = 0;
+
+        if (mCurrentChoiceData?.Choices != null)
+        {
+            currentChoices = mCurrentChoiceData.Choices.Count;
+        }
+
+        for (var i = 0; i < ChoiceButtons.Length; i++)
+        {
+            var button = ChoiceButtons[i];
+            button.interactable = interactable && i < currentChoices;
+
+            //If this is going to be interactive
+            button.gameObject.SetActive(i < currentChoices);
+           
+            if (resetText)
+            {
+                var textComp = button.GetComponentInChildren<Text>();
+                if (textComp != null)
+                {
+                    textComp.text = "-";
+                }
+            }
+        }
+    }
+
+    public IEnumerator FadeChatGroup(float startAlpha, float endAlpha, float duration)
+    {
+        if (Math.Abs(AlphaGroup.alpha - endAlpha) > 0.01f)
+        {
+            float elapsedTime = 0f;
+            float totalDuration = duration;
+
+            while (elapsedTime < totalDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float currentAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / totalDuration);
+
+                AlphaGroup.alpha = currentAlpha;
+
+                yield return null;
+            }
+        }
+    }
+    public IEnumerator FadeChoiceGroup(float startAlpha, float endAlpha, float duration)
+    {
+        if (Math.Abs(ButtonAlphaGroup.alpha - endAlpha) > 0.01f)
+        {
+            float elapsedTime = 0f;
+            float totalDuration = duration;
+
+            while (elapsedTime < totalDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float currentAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / totalDuration);
+
+                ButtonAlphaGroup.alpha = currentAlpha;
+
+                yield return null;
+            }
+
+            SetButtons(true);
+        }
+    }
 }

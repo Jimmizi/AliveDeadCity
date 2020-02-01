@@ -1,4 +1,4 @@
 {
     "Type": "choice",
-    "OpenChoiceFile": "RoomTwo/Choices/Choice_RoomTwo"
+    "OpenChoiceFile": "Example/RoomTwo/Choices/Choice_RoomTwo"
 }

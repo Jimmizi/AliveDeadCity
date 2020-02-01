@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -28,6 +29,15 @@ public static class Service
     public static JsonDataExecuter Execution()
     {
         return mJsonExecuterPtr;
+    }
+
+    public static Testing Test()
+    {
+#if !DEBUG
+        //When release, return a blank testing config so nothing will be enabled
+        return new Testing();
+#endif
+        return mTesterPtr;
     }
 
     public static void Provide(UiManager ui)
@@ -59,9 +69,16 @@ public static class Service
         mJsonExecuterPtr = executer;
     }
 
+    public static void Provide(Testing test)
+    {
+        Assert.IsNull(mTesterPtr);
+        mTesterPtr = test;
+    }
+
     private static UiManager mUiManagerPtr;
     private static GameFlow mGameFlowPtr;
     private static SoundManager mSoundManagerPtr;
     private static ChatBox mChatBoxPtr;
     private static JsonDataExecuter mJsonExecuterPtr;
+    private static Testing mTesterPtr;
 }
