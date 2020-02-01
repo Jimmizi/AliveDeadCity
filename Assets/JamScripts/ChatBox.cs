@@ -58,7 +58,7 @@ public class ChatBox : MonoBehaviour
     /// </summary>
     private void ResetConversationToCurrentLine()
     {
-        SpeakerTextComponent.text = mCurrentConversationData.Lines[mCurrentLineChar].Speaker;
+        SpeakerTextComponent.text = mCurrentConversationData.Lines[mCurrentConvLine].Speaker;
         SpeechTextComponent.text = "";
         mCurrentLineChar = 0;
     }
@@ -113,6 +113,8 @@ public class ChatBox : MonoBehaviour
                 {
                     mCharacterTimer = 0.0f;
 
+                    //TODO Special timing characters
+
                     SpeechTextComponent.text += mCurrentConversationData.Lines[mCurrentConvLine].Speech
                         .Substring(mCurrentLineChar++, 1);
                 }
@@ -120,9 +122,11 @@ public class ChatBox : MonoBehaviour
                 {
                     mCharacterTimer += Time.deltaTime;
                 }
+
+                return;
             }
             //If we're done with appending text, wait until the player has pressed something to advance text
-            else if (!Input.anyKeyDown)
+            else if (!Input.anyKey)
             {
                 return;
             }
