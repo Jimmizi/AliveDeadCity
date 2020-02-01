@@ -74,6 +74,7 @@ public class UiManager : MonoBehaviour
             SetCameraFaderAlpha(true);
             StartCoroutine(FadeOutScreenFader(1f, 0f));
             InGame = true;
+            SceneIdleCamera.CanWander = true;
             return;
         }
 
@@ -172,6 +173,8 @@ public class UiManager : MonoBehaviour
                 InGame = true;
                 StartCoroutine(FadeOutScreenFader(1f, 0f));
                 mCurrentPosition = Positioning.Done;
+
+                SceneIdleCamera.CanWander = true;
                 
                 break;
             }
@@ -199,15 +202,32 @@ public class UiManager : MonoBehaviour
 		
 	}
 
-    public IEnumerator FadeOutScreenFader(float startAlpha, float endAlpha)
+    public bool IsScreenFadedIn => Math.Abs(FaderForBackToOrigin.alpha) < 0.01f;
+    public bool IsScreenFadeTransitioning => mScreenIsFading;
+
+    private bool mScreenIsFading = false;
+
+    public void FadeScreenOut()
     {
+        StartCoroutine(FadeOutScreenFader(0f, 1f, false));
+    }
+
+    public void FadeScreenIn()
+    {
+        StartCoroutine(FadeOutScreenFader(1f, 0f, false));
+    }
+
+    public IEnumerator FadeOutScreenFader(float startAlpha, float endAlpha, bool fadeCharactersIn = true)
+    {
+        mScreenIsFading = true;
+
         float elapsedTime = 0f;
         float totalDuration = 1.0f;
         bool fadedInCharacters = false;
 
         while (elapsedTime < totalDuration)
         {
-            if (InGame && !fadedInCharacters)
+            if (InGame && !fadedInCharacters && fadeCharactersIn)
             {
                 if(elapsedTime >= totalDuration / 2)
                 {
@@ -224,6 +244,7 @@ public class UiManager : MonoBehaviour
             yield return null;
         }
 
+        mScreenIsFading = false;
     }
 
 }

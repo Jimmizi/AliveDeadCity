@@ -100,6 +100,14 @@ public class JsonDataExecuter
 
     private bool ProcessEvent_Damage()
     {
+        var damage = mCurrentEvent.DamageAmount;
+        var memberIndex = mCurrentEvent.DamagePartyMemberIndex;
+
+        if (memberIndex >= 0 && memberIndex < PartyManager.MAX_PARTY_MEMBERS)
+        {
+            Service.Party().PartyHealth[memberIndex] -= damage;
+        }
+
         return true;
     }
 
@@ -110,8 +118,23 @@ public class JsonDataExecuter
 
     private bool ProcessEvent_LoadRoom()
     {
-        //TODO Might want some kind of transition to happen in here before we unload/load scenes
-
+        //Not the first load scene
+        if (mLastSceneNameAdded.Length > 0)
+        {
+            if (Service.UI().IsScreenFadedIn)
+            {
+                if (!Service.UI().IsScreenFadeTransitioning)
+                {
+                    Service.UI().FadeScreenOut();
+                    return false;
+                }
+            }
+            else if (Service.UI().IsScreenFadeTransitioning)
+            {
+                return false;
+            }
+        }
+        
         //Make sure to unload the last scene
         if (mLastSceneNameAdded.Length > 0)
         {
@@ -131,6 +154,11 @@ public class JsonDataExecuter
 
         //Make sure the scene exists above, then load it additively if so
         SceneManager.LoadScene(mCurrentEvent.SceneName, LoadSceneMode.Additive);
+
+        if (!Service.UI().IsScreenFadeTransitioning)
+        {
+            Service.UI().FadeScreenIn();
+        }
 
         mLastSceneNameAdded = mCurrentEvent.SceneName;
         return true;

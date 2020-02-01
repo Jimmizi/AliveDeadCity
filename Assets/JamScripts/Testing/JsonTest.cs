@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+#if DEBUG
 using System.IO;
 using UnityEditor;
-
+#endif
 /// <summary>
 /// Use this to generate formats for how the data should be set up
 /// </summary>
@@ -58,7 +60,7 @@ public class JsonTest : MonoBehaviour
         string evtText = JsonUtility.ToJson(evtData);
         string brkText = JsonUtility.ToJson(brkData);
 
-
+#if DEBUG
         if (UpdateDefaultChoiceFormat)
         {
             File.WriteAllText(AssetDatabase.GetAssetPath(fileForChoiceData), choiceText);
@@ -82,7 +84,7 @@ public class JsonTest : MonoBehaviour
             File.WriteAllText(AssetDatabase.GetAssetPath(fileForBarkData), brkText);
             EditorUtility.SetDirty(fileForBarkData);
         }
-
+#endif
     }
 
     // Start is called before the first frame update

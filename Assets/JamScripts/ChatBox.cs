@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class ChatBox : MonoBehaviour
 {
+    private const int MAX_CHOICES = 4;
     #region Public settings
 
     public Text SpeakerTextComponent;
@@ -17,7 +18,7 @@ public class ChatBox : MonoBehaviour
     private Vector3 mLineMarkerStartPos;
     private float mLineMarkerTimer;
 
-    public Button[] ChoiceButtons = new Button[5];
+    public Button[] ChoiceButtons = new Button[MAX_CHOICES];
 
     public CanvasGroup AlphaGroup;
     public CanvasGroup ButtonAlphaGroup;
@@ -75,12 +76,42 @@ public class ChatBox : MonoBehaviour
 
     private bool mNextLinePressed;
 
+    private void SetSpeakerName()
+    {
+        SpeakerTextComponent.text = mCurrentConversationData.Lines[mCurrentConvLine].Speaker;
+
+        var names = Service.Party().MemberNames;
+        var colors = Service.Party().MemberColours;
+
+        int speakerIndex = -1;
+
+        for (var i = 0; i < names.Length; i++)
+        {
+            if (SpeakerTextComponent.text.ToLower().Equals(names[i].ToLower()))
+            {
+                speakerIndex = i;
+                SpeakerTextComponent.color = colors[i];
+                break;
+            }
+        }
+
+        if (speakerIndex > -1)
+        {
+            Service.Party().SetMemberAsSpeaker(speakerIndex);
+        }
+        else
+        {
+            //No speaker name
+            Service.Party().ResetSpeakerMembers();
+        }
+    }
+
     /// <summary>
     /// Reset the conversation text box, and set the speaker for the current line about to be spoken
     /// </summary>
     private void ResetConversationToCurrentLine()
     {
-        SpeakerTextComponent.text = mCurrentConversationData.Lines[mCurrentConvLine].Speaker;
+        SetSpeakerName();
         SpeechTextComponent.text = "";
         mCurrentLineChar = 0;
     }
@@ -171,6 +202,7 @@ public class ChatBox : MonoBehaviour
         if (mIsConversation)
         {
             StartCoroutine(FadeChatGroup(1.0f, 0.0f, 0.5f));
+            Service.Party().ResetSpeakerMembers();
         }
         else
         {
