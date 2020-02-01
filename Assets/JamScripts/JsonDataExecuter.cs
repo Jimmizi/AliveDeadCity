@@ -24,7 +24,8 @@ public class JsonDataExecuter
     private ConversationData mCurrentConversationData = null;
     private ChoiceData mCurrentChoiceData = null;
 
-
+    private bool mDelayStarted;
+    private float mDelayTimer;
 
     private void LoadEvent(string json)
     {
@@ -113,6 +114,20 @@ public class JsonDataExecuter
 
     private bool ProcessEvent_Delay()
     {
+        if (!mDelayStarted)
+        {
+            mDelayStarted = true;
+            mDelayTimer = 0.0f;
+        }
+
+        if (mDelayTimer < mCurrentEvent.DelayTime)
+        {
+            mDelayTimer += Time.deltaTime;
+            return false;
+        }
+
+        mDelayStarted = false;
+
         return true;
     }
 
