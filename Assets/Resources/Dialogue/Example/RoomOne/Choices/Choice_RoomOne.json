@@ -4,10 +4,6 @@
     {
       "Text": "[Leave]",
       "EventFile": "Example/RoomTwo/Events/Enter"
-    },
-    {
-      "Text": "[Contact Mission Command]",
-      "EventFile": "Example/start"
     }
   ]
 }

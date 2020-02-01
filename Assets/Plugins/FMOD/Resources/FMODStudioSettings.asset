@@ -15,7 +15,7 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 0
   HasPlatforms: 0
-  sourceProjectPath: fmod_project\ggj\ggj.fspro
+  sourceProjectPath: fmod_project/ggj/ggj.fspro
   sourceBankPath: Assets\fmod_build\Desktop
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
@@ -74,8 +74,7 @@ MonoBehaviour:
   - Platform: 20
     Value: 32
   Plugins: []
-  MasterBanks:
-  - Master
+  MasterBanks: []
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264

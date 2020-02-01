@@ -6,11 +6,27 @@
         },
         {
             "Speaker": "",
-            "Speech": "As you move back."
+            "Speech": "After a few steps, a new call arrives. Tag: Immediate Response."
+        },
+        {
+            "Speaker": "Glados",
+            "Speech": "Ooh. Momma is angry."
+        },
+        {
+            "Speaker": "You",
+            "Speech": "Awnser it."
+        },
+        {
+            "Speaker": "Glados",
+            "Speech": "...\nI didn't upgrade for this."
+        },
+        {
+            "Speaker": "[Beep]",
+            "Speech": "..."
         },
         {
             "Speaker": "COMMANDER",
-            "Speech": "Sewers got you dizzy soldier? Get your ass back in there Agent Scully"
+            "Speech": "[Stactic sounds]\n Sewers got you dizzy Agent Scully? Get your ass back in there!"
         }
     ],
   

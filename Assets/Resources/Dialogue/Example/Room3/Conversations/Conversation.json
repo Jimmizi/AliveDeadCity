@@ -1,0 +1,23 @@
+{
+    "Lines": [
+        {
+            "Speaker": "AGENT SCULLY",
+            "Speech": "Just getting some fresh air."
+        },
+        {
+            "Speaker": "COMMANDER",
+            "Speech": "Did I hear 'Air' soldier? Your file didn't mentioned \"Breathes Poison.\"\nNeither \"It's a Deserter.\"\n Should I update it?"
+        },
+        {
+            "Speaker": "AGENT SCULLY",
+            "Speech": "N-No sir."
+        },
+        {
+            "Speaker": "COMMANDER",
+            "Speech": "Good. I'm sending it the mission report."
+        }
+    ],
+    "EventsToFire": [
+        "Example/Room3/Events/Choice"
+    ]
+}
