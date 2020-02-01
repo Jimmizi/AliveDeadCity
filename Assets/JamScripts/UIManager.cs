@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -25,6 +26,7 @@ public class UiManager : MonoBehaviour
     public float StartToIdleTime = 3.0f;
     
     public CanvasGroup FaderForBackToOrigin;
+    public List<GameObject> CameraFaderObjects = new List<GameObject>();
 
     [HideInInspector]
 	public bool InGame = false;
@@ -36,6 +38,13 @@ public class UiManager : MonoBehaviour
     private ShowPanels showPanels;										//Reference to ShowPanels script on UI GameObject, to show and hide panels
     private CanvasGroup[] menuCanvasGroup;
 
+    void SetCameraFaderAlpha(bool active)
+    {
+        foreach (var fader in CameraFaderObjects)
+        {
+            fader.SetActive(active);
+        }
+    }
 
     void Awake()
 	{
@@ -46,6 +55,8 @@ public class UiManager : MonoBehaviour
 
 		//Get all canvas grounds in my childen, we want to fade them all out at the same time
         menuCanvasGroup = GetComponentsInChildren<CanvasGroup>();
+
+        SetCameraFaderAlpha(false);
 
         var pos = Camera.main.transform.position;
         pos.y = TitleScreenStartYPos;
@@ -58,6 +69,7 @@ public class UiManager : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync("TitleScreen");
             Camera.main.transform.position = new Vector3(0, 0, -10);
+            SetCameraFaderAlpha(true);
             InGame = true;
         }
     }
@@ -138,12 +150,13 @@ public class UiManager : MonoBehaviour
                     FaderForBackToOrigin.alpha = 1.0f;
                     mCurrentPosition = Positioning.BackToOrigin;
                     SceneManager.UnloadSceneAsync("TitleScreen");
-                    }
+                }
                 break;
             }
             case Positioning.BackToOrigin:
             {
                 Camera.main.transform.position = new Vector3(0, 0, -10);
+                SetCameraFaderAlpha(true);
                 StartCoroutine(FadeOutScreenFader(1f, 0f));
                 mCurrentPosition = Positioning.Done;
                 break;
@@ -176,11 +189,21 @@ public class UiManager : MonoBehaviour
     {
         float elapsedTime = 0f;
         float totalDuration = 1.0f;
+        bool fadedInCharacters = false;
 
         InGame = true;
 
         while (elapsedTime < totalDuration)
         {
+            if (!fadedInCharacters)
+            {
+                if(elapsedTime >= totalDuration / 2)
+                {
+                    fadedInCharacters = true;
+                    Service.Party().FadeInParty();
+                }
+            }
+
             elapsedTime += Time.deltaTime;
             float currentAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / totalDuration);
 

@@ -40,6 +40,12 @@ public static class Service
         return mTesterPtr;
     }
 
+    public static PartyManager Party()
+    {
+        return mPartyManagerPtr;
+    }
+
+
     public static void Provide(UiManager ui)
     {
         Assert.IsNull(mUiManagerPtr);
@@ -75,10 +81,17 @@ public static class Service
         mTesterPtr = test;
     }
 
+    public static void Provide(PartyManager party)
+    {
+        Assert.IsNull(mPartyManagerPtr);
+        mPartyManagerPtr = party;
+    }
+
     private static UiManager mUiManagerPtr;
     private static GameFlow mGameFlowPtr;
     private static SoundManager mSoundManagerPtr;
     private static ChatBox mChatBoxPtr;
     private static JsonDataExecuter mJsonExecuterPtr;
     private static Testing mTesterPtr;
+    private static PartyManager mPartyManagerPtr;
 }
