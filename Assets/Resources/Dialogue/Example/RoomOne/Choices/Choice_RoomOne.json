@@ -2,11 +2,11 @@
   "Choices": 
   [
     {
-      "Text": "Go To Room Two",
+      "Text": "[Leave]",
       "EventFile": "Example/RoomTwo/Events/Enter"
     },
     {
-      "Text": "Say What?",
+      "Text": "[Contact Mission Command]",
       "EventFile": "start"
     }
   ]

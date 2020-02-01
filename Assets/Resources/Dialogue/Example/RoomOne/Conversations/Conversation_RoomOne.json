@@ -1,16 +1,12 @@
 {
     "Lines": [
       {
-        "Speaker": "Speaker Tom",
-        "Speech": "Hey I'm Speaker Tom. Let me tell you about text adventures."
+        "Speaker": "",
+        "Speech": "This isn't worth the money, your suit agrees."
       },
       {
-        "Speaker": "Speaker Sky",
-        "Speech": "Sure thing Speaker Tom! I'd love to hear more about adventures."
-      },
-      {
-        "Speaker": "Speaker Tom",
-        "Speech": "But before that, have a choice..."
+        "Speaker": "T-2000",
+        "Speech": "They must be dead by now, lets go back home. It didn't upgrade for this."
       }
     ],
   
