@@ -79,7 +79,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{c7e9fb54-2cb3-4d88-89e5-1811bbd90cdc}">
 		<property name="volume">
-			<value>2.5</value>
+			<value>1</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{9ba120a2-8085-4355-a641-51116e161d78}</destination>
@@ -114,6 +114,9 @@
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{a00069f4-d05e-44be-82b6-7b98db06290d}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{3c1a4282-f7c6-4815-9360-e6278cd44b0f}</destination>
 		</relationship>
@@ -145,20 +148,36 @@
 	</object>
 	<object class="MixerBusPanner" id="{561af23f-5967-43b7-b440-4d6625c66b92}" />
 	<object class="MixerBusFader" id="{f57b54c3-8c74-4fb7-b7aa-0848a40f6dc2}" />
+	<object class="ADSRModulator" id="{a00069f4-d05e-44be-82b6-7b98db06290d}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="initialValue">
+			<value>-80</value>
+		</property>
+		<property name="finalValue">
+			<value>-80</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{3c1a4282-f7c6-4815-9360-e6278cd44b0f}">
 		<relationship name="effects">
 			<destination>{cff08f4e-a286-417d-afe3-75f1f83c8513}</destination>
 			<destination>{61b5f92b-4621-467a-b251-35a886d55480}</destination>
+			<destination>{78f05f74-f2e1-4eef-b1ed-e385a78319d2}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{eb595bec-c389-4172-af1b-e251202d6805}" />
 	<object class="MixerBusFader" id="{b058f9b4-fed4-4ae6-a64d-48fed9fb1f47}" />
 	<object class="MixerBusFader" id="{cff08f4e-a286-417d-afe3-75f1f83c8513}" />
 	<object class="SFXReverbEffect" id="{61b5f92b-4621-467a-b251-35a886d55480}">
+		<property name="decayTime">
+			<value>3000</value>
+		</property>
 		<relationship name="automators">
 			<destination>{b2d5ac24-e26a-4949-993c-ff91df263f08}</destination>
 		</relationship>
 	</object>
+	<object class="LoudnessMeter" id="{78f05f74-f2e1-4eef-b1ed-e385a78319d2}" />
 	<object class="Automator" id="{b2d5ac24-e26a-4949-993c-ff91df263f08}">
 		<property name="nameOfPropertyBeingAutomated">
 			<value>wetLevel</value>
@@ -181,7 +200,7 @@
 			<value>58.841201716738198</value>
 		</property>
 		<property name="value">
-			<value>-6</value>
+			<value>-5</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{8915abaf-2236-4c88-a6c6-256910979572}">
