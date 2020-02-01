@@ -11,6 +11,7 @@ public class UiManager : MonoBehaviour
 {
     private enum Positioning
     {
+        FadeIn,
         StartToIdle,
         Idling,
         IdleToEnd,
@@ -31,7 +32,7 @@ public class UiManager : MonoBehaviour
     [HideInInspector]
 	public bool InGame = false;
 
-    private Positioning mCurrentPosition = Positioning.StartToIdle;
+    private Positioning mCurrentPosition = Positioning.FadeIn;
 
     private bool mTitleIdlingFlipDir = false;
 
@@ -61,17 +62,22 @@ public class UiManager : MonoBehaviour
         var pos = Camera.main.transform.position;
         pos.y = TitleScreenStartYPos;
         Camera.main.transform.position = pos;
+
+        FaderForBackToOrigin.alpha = 1.0f;
     }
 
     void Start()
     {
         if (Service.Test().SkipTitle)
         {
-            SceneManager.UnloadSceneAsync("TitleScreen");
             Camera.main.transform.position = new Vector3(0, 0, -10);
             SetCameraFaderAlpha(true);
+            StartCoroutine(FadeOutScreenFader(1f, 0f));
             InGame = true;
+            return;
         }
+
+        SceneManager.LoadScene("TitleScreen", LoadSceneMode.Additive);
     }
 
     void Update()
@@ -81,7 +87,7 @@ public class UiManager : MonoBehaviour
             return;
         }
 
-        if (mCurrentPosition < Positioning.IdleToEnd)
+        if (mCurrentPosition < Positioning.IdleToEnd && mCurrentPosition != Positioning.FadeIn)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -92,6 +98,12 @@ public class UiManager : MonoBehaviour
         //Hacky af but whatever
         switch (mCurrentPosition)
         {
+            case Positioning.FadeIn:
+            {
+                StartCoroutine(FadeOutScreenFader(1f, 0f));
+                mCurrentPosition = Positioning.StartToIdle;
+                break;
+            }
             case Positioning.StartToIdle:
             {
                 var pos = Camera.main.transform.position;
@@ -157,8 +169,10 @@ public class UiManager : MonoBehaviour
             {
                 Camera.main.transform.position = new Vector3(0, 0, -10);
                 SetCameraFaderAlpha(true);
+                InGame = true;
                 StartCoroutine(FadeOutScreenFader(1f, 0f));
                 mCurrentPosition = Positioning.Done;
+                
                 break;
             }
         }
@@ -191,11 +205,9 @@ public class UiManager : MonoBehaviour
         float totalDuration = 1.0f;
         bool fadedInCharacters = false;
 
-        InGame = true;
-
         while (elapsedTime < totalDuration)
         {
-            if (!fadedInCharacters)
+            if (InGame && !fadedInCharacters)
             {
                 if(elapsedTime >= totalDuration / 2)
                 {
