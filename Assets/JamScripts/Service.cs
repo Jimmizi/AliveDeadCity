@@ -20,6 +20,11 @@ public static class Service
         return mSoundManagerPtr;
     }
 
+    public static ChatBox Chat()
+    {
+        return mChatBoxPtr;
+    }
+
     public static void Provide(UiManager ui)
     {
         Assert.IsNull(mUiManagerPtr);
@@ -37,7 +42,14 @@ public static class Service
         mSoundManagerPtr = audio;
     }
 
+    public static void Provide(ChatBox chatB)
+    {
+        Assert.IsNull(mChatBoxPtr);
+        mChatBoxPtr = chatB;
+    }
+
     private static UiManager mUiManagerPtr;
     private static GameFlow mGameFlowPtr;
     private static SoundManager mSoundManagerPtr;
+    private static ChatBox mChatBoxPtr;
 }

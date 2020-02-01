@@ -2,22 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
-public abstract class GameStage
+public enum CurrentTextFormat
 {
-    public enum State
-    {
-        Init,
-        Update,
-        Exit
-    }
-
-    private State mCurrentState;
-    public State CurrentState => mCurrentState;
-
-    public abstract void Init();
-    public abstract void Update();
-    public abstract void Exit();
+    Event,
+    Conversation,
+    Choice
 }
 
 /// <summary>
@@ -25,66 +16,45 @@ public abstract class GameStage
 /// </summary>
 public class GameFlow : MonoBehaviour
 {
-    private List<GameStage> mGameStages = new List<GameStage>();
-    private short mCurrentStage = 0;
+    
 
+    /// <summary>
+    /// Event File to start off the game
+    /// </summary>
+    public TextAsset StartEvent;
+
+    private JsonDataExecuter mExecuter = new JsonDataExecuter();
+
+    private CurrentTextFormat mStartFormat;
+    private string mStartJsonText;
 
     void Awake()
     {
         Service.Provide(this);
     }
-
+    
     void Start()
     {
-        
-    }
+        Assert.IsNotNull(StartEvent);
 
-    /// <summary>
-    /// Process the current stage, returning if the stage should go to the next one
-    /// </summary>
-    /// <returns>True if done</returns>
-    bool ProcessCurrentStage()
-    {
-        switch (mGameStages[mCurrentStage].CurrentState)
-        {
-            case GameStage.State.Init:
-
-                mGameStages[mCurrentStage].Init();
-
-                break;
-            case GameStage.State.Update:
-
-                mGameStages[mCurrentStage].Update();
-
-                break;
-
-            case GameStage.State.Exit:
-
-                mGameStages[mCurrentStage].Exit();
-                return true;
-
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-
-        return false;
+        mStartFormat = CurrentTextFormat.Event;
+        mStartJsonText = StartEvent.text;
     }
 
     void Update()
     {
-        
-        if (mCurrentStage < mGameStages.Count)
+        if (!mExecuter.Processing)
         {
-            if (ProcessCurrentStage())
-            {
-                mCurrentStage++;
-            }
-
+            mExecuter.GiveJsonToExecute(mStartFormat, mStartJsonText);
         }
         else
         {
-            //Game is done
+            if (mExecuter.Update())
+            {
+
+            }
         }
+        
+        
     }
 }

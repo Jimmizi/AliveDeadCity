@@ -16,6 +16,6 @@
   
     "EventsToFire": 
     [
-      "RoomOne/Events/Event_FireRoomOneChoice"
+      "Example/RoomOne/Events/Event_FireRoomOneChoice"
     ]
 }

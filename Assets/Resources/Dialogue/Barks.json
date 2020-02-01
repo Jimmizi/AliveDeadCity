@@ -1,0 +1,22 @@
+{
+  "HealMeText": 
+  [
+    "Top me up!",
+    "Gimme meds!"
+  ],
+  "ExpletivesText": 
+  [
+    "Holy Mother...",
+    "$**t"
+  ],
+  "HelpMeText": 
+  [
+    "Please help!",
+    "Mercy!"
+  ],
+  "DreadText": 
+  [
+    "Oh god no...",
+    "..."
+  ]
+}

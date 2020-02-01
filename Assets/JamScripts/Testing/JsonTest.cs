@@ -13,10 +13,12 @@ public class JsonTest : MonoBehaviour
     public TextAsset fileForChoiceData;
     public TextAsset fileForEventData;
     public TextAsset fileForConversationData;
+    public TextAsset fileForBarkData;
 
     public bool UpdateDefaultChoiceFormat;
     public bool UpdateDefaultEventFormat;
     public bool UpdateDefaultConversationFormat;
+    public bool UpdateDefaultBarkFormat;
 
     void GenerateFileFormats()
     {
@@ -41,9 +43,20 @@ public class JsonTest : MonoBehaviour
         evtData.EventsToFire.Add("EventLoadStageOne");
         evtData.EventsToFire.Add("EventStartFight");
 
+        BarkData brkData = new BarkData();
+        brkData.DreadText.Add("Oh god no...");
+        brkData.DreadText.Add("...");
+        brkData.ExpletivesText.Add("Holy Mother...");
+        brkData.ExpletivesText.Add("$**t");
+        brkData.HealMeText.Add("Top me up!");
+        brkData.HealMeText.Add("Gimme meds!");
+        brkData.HelpMeText.Add("Please help!");
+        brkData.HelpMeText.Add("Mercy!");
+
         string choiceText = JsonUtility.ToJson(choiceData);
         string convText = JsonUtility.ToJson(convData);
         string evtText = JsonUtility.ToJson(evtData);
+        string brkText = JsonUtility.ToJson(brkData);
 
 
         if (UpdateDefaultChoiceFormat)
@@ -62,6 +75,12 @@ public class JsonTest : MonoBehaviour
         {
             File.WriteAllText(AssetDatabase.GetAssetPath(fileForConversationData), convText);
             EditorUtility.SetDirty(fileForConversationData);
+        }
+
+        if (UpdateDefaultBarkFormat)
+        {
+            File.WriteAllText(AssetDatabase.GetAssetPath(fileForBarkData), brkText);
+            EditorUtility.SetDirty(fileForBarkData);
         }
 
     }

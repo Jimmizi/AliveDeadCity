@@ -2,7 +2,7 @@
     "Type": "event",
     "EventsToFire": 
     [
-        "RoomOne/Events/Event_MoveToRoomOne_SetRoom",
-        "RoomOne/Events/Event_MoveToRoomOne_SetConversation"
+        "Example/RoomOne/Events/Event_MoveToRoomOne_SetRoom",
+        "Example/RoomOne/Events/Event_MoveToRoomOne_SetConversation"
     ]
 }

@@ -11,8 +11,6 @@ public class EventData
      * conversation
      * choice
      * inventory
-     * 
-     *
      */
     
     /// <summary>

@@ -2,6 +2,6 @@
   "Type": "event",
   "EventsToFire": 
   [
-    "RoomOne/Events/Enter"
+    "Example/RoomOne/Events/Enter"
   ]
 }

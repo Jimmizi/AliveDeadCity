@@ -3,7 +3,7 @@
   [
     {
       "Text": "Go To Room Two",
-      "EventFile": "RoomTwo/Events/Enter"
+      "EventFile": "Example/RoomTwo/Events/Enter"
     },
     {
       "Text": "Say What?",
