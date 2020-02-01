@@ -12,6 +12,11 @@ public class ChatBox : MonoBehaviour
     public Text SpeakerTextComponent;
     public Text SpeechTextComponent;
 
+    public Button[] ChoiceButtons = new Button[5];
+
+    public CanvasGroup AlphaGroup;
+    public CanvasGroup ButtonAlphaGroup;
+
     /// <summary>
     /// How long to wait between appending characters to the speech box
     /// </summary>
@@ -52,7 +57,7 @@ public class ChatBox : MonoBehaviour
     private float mCharacterTimer;
 
     #endregion
-
+    
     /// <summary>
     /// Reset the conversation text box, and set the speaker for the current line about to be spoken
     /// </summary>
@@ -71,6 +76,7 @@ public class ChatBox : MonoBehaviour
         mCurrentConvLine = 0;
         mCurrentLineChar = 0;
         mProcessingChat = true;
+        AlphaGroup.alpha = 1f;
     }
 
     /// <summary>
@@ -97,7 +103,18 @@ public class ChatBox : MonoBehaviour
         mCurrentChoiceData = choice;
         mCurrentConversationData = null;
 
+        ButtonAlphaGroup.alpha = 1.0f;
+
         SetReadyToStart();
+    }
+
+    void EndChat()
+    {
+        mCurrentConversationData = null;
+        mCurrentChoiceData = null;
+        mProcessingChat = false;
+        AlphaGroup.alpha = 0;
+        ButtonAlphaGroup.alpha = 0;
     }
 
     private void ProcessConversation()
@@ -145,11 +162,23 @@ public class ChatBox : MonoBehaviour
             }
             
         }
+        //Otherwise we are done with this conversation
+        else
+        {
+            EndChat();
+        }
+    }
+
+    void ProcessChoice()
+    {
+
     }
 
     void Awake()
     {
         Service.Provide(this);
+        AlphaGroup.alpha = 0;
+        ButtonAlphaGroup.alpha = 0;
     }
 
     void Start()
@@ -163,10 +192,13 @@ public class ChatBox : MonoBehaviour
         {
             if (mIsConversation)
             {
-                
                 ProcessConversation();
             }
-
+            else
+            {
+                ProcessChoice();
+            }
         }
     }
+
 }

@@ -24,6 +24,8 @@ public class JsonDataExecuter
     private ConversationData mCurrentConversationData = null;
     private ChoiceData mCurrentChoiceData = null;
 
+
+
     private void LoadEvent(string json)
     {
         mQueuedEvents.Enqueue(JsonUtility.FromJson<EventData>(json));
@@ -260,6 +262,7 @@ public class JsonDataExecuter
                     else
                     {
                         //Done with chatbox, fire any events off
+                        AddEventNamesToQueue(mCurrentConversationData.EventsToFire);
                     }
                 }
                 break;
@@ -273,6 +276,7 @@ public class JsonDataExecuter
                     else
                     {
                         //Done with chatbox, fire any events off
+                        AddEventNameToQueue(mCurrentChoiceData.Choices[mCurrentChoiceData.ChoiceTaken].EventFile);
                     }
                 }
                 break;

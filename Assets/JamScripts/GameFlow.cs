@@ -31,6 +31,7 @@ public class GameFlow : MonoBehaviour
     void Awake()
     {
         Service.Provide(this);
+        Service.Provide(mExecuter);
     }
     
     void Start()
@@ -43,6 +44,11 @@ public class GameFlow : MonoBehaviour
 
     void Update()
     {
+        if (!Service.UI().InGame)
+        {
+            return;
+        }
+
         if (!mExecuter.Processing)
         {
             mExecuter.GiveJsonToExecute(mStartFormat, mStartJsonText);

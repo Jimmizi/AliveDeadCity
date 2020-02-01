@@ -25,6 +25,11 @@ public static class Service
         return mChatBoxPtr;
     }
 
+    public static JsonDataExecuter Execution()
+    {
+        return mJsonExecuterPtr;
+    }
+
     public static void Provide(UiManager ui)
     {
         Assert.IsNull(mUiManagerPtr);
@@ -48,8 +53,15 @@ public static class Service
         mChatBoxPtr = chatB;
     }
 
+    public static void Provide(JsonDataExecuter executer)
+    {
+        Assert.IsNull(mJsonExecuterPtr);
+        mJsonExecuterPtr = executer;
+    }
+
     private static UiManager mUiManagerPtr;
     private static GameFlow mGameFlowPtr;
     private static SoundManager mSoundManagerPtr;
     private static ChatBox mChatBoxPtr;
+    private static JsonDataExecuter mJsonExecuterPtr;
 }

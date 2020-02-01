@@ -26,4 +26,6 @@ public class ChoiceData
     }
 
     public List<ChoiceOption> Choices = new List<ChoiceOption>();
+
+    [NonSerialized] public int ChoiceTaken = 0;
 }
