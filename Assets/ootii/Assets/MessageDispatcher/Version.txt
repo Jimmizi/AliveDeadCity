@@ -1,3 +1,0 @@
-﻿Event System - Dispatcher
-Version 1.644
-Jan 4, 2020
