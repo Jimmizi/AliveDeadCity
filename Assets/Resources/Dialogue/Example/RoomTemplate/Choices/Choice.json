@@ -3,11 +3,11 @@
     [
       {
         "Text": "Lie",
-        "EventFile": "Example/Room3/Events/Enter"
+        "EventFile": "Example/RoomX/Choices/Choice"
       },
       {
         "Text": "Truth",
-        "EventFile": "Example/Room4/Events/Enter"
+        "EventFile": "Example/RoomX/Choices/Choice"
       }
     ]
 }
