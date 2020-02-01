@@ -208,6 +208,19 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 588811573225688762}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: -1
 --- !u!1 &1315117421
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +379,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1368963237214745626, guid: 42d0a418152e23b47867dfeada27e74e,
+        type: 3}
+      propertyPath: mSoundInstances.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368963237214745626, guid: 42d0a418152e23b47867dfeada27e74e,
+        type: 3}
+      propertyPath: mSoundInstances.Array.data[0].EventName
+      value: event:/Music/menu_music
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368963237214745626, guid: 42d0a418152e23b47867dfeada27e74e,
+        type: 3}
+      propertyPath: mSoundInstances.Array.data[0]
+      value: event:/Music/menu_music
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368963237214745626, guid: 42d0a418152e23b47867dfeada27e74e,
+        type: 3}
+      propertyPath: MenuMusicEvent
+      value: event:/Music/menu_music
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368963237214745626, guid: 42d0a418152e23b47867dfeada27e74e,
+        type: 3}
+      propertyPath: GameLoopMusicEvent
+      value: event:/Music/music1
+      objectReference: {fileID: 0}
     - target: {fileID: 6555881570960988136, guid: 42d0a418152e23b47867dfeada27e74e,
         type: 3}
       propertyPath: m_Camera
@@ -502,6 +540,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
+      propertyPath: OtherNames.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherColours.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
       propertyPath: MemberNames.Array.data[0]
       value: Agent Scully
       objectReference: {fileID: 0}
@@ -514,6 +562,56 @@ PrefabInstance:
         type: 3}
       propertyPath: MemberNames.Array.data[1]
       value: Kay
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherNames.Array.data[0]
+      value: COMMANDER
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherNames.Array.data[1]
+      value: GLADOS
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherColours.Array.data[0].r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherColours.Array.data[0].g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherColours.Array.data[0].b
+      value: 0.014067749
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherColours.Array.data[0].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherColours.Array.data[1].r
+      value: 0.6627219
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherColours.Array.data[1].g
+      value: 0.1981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherColours.Array.data[1].b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherColours.Array.data[1].a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7157549815013561468, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}

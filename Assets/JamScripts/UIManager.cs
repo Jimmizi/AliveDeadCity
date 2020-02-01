@@ -73,12 +73,14 @@ public class UiManager : MonoBehaviour
             Camera.main.transform.position = new Vector3(0, 0, -10);
             SetCameraFaderAlpha(true);
             StartCoroutine(FadeOutScreenFader(1f, 0f));
+            Service.Audio().PlayGameLoopMusic();
             InGame = true;
             SceneIdleCamera.CanWander = true;
             return;
         }
 
         SceneManager.LoadScene("TitleScreen", LoadSceneMode.Additive);
+        Service.Audio().PlayMenuMusic();
     }
 
     void Update()
@@ -93,6 +95,7 @@ public class UiManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 ExitMenuOverlay();
+                Service.Audio().StopMenuMusic();
             }
         }
 
@@ -173,6 +176,8 @@ public class UiManager : MonoBehaviour
                 InGame = true;
                 StartCoroutine(FadeOutScreenFader(1f, 0f));
                 mCurrentPosition = Positioning.Done;
+
+                Service.Audio().PlayGameLoopMusic();
 
                 SceneIdleCamera.CanWander = true;
                 
