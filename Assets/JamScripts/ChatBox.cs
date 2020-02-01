@@ -13,6 +13,10 @@ public class ChatBox : MonoBehaviour
     public Text SpeakerTextComponent;
     public Text SpeechTextComponent;
 
+    public Text NextLineMarker;
+    private Vector3 mLineMarkerStartPos;
+    private float mLineMarkerTimer;
+
     public Button[] ChoiceButtons = new Button[5];
 
     public CanvasGroup AlphaGroup;
@@ -36,6 +40,8 @@ public class ChatBox : MonoBehaviour
     /// Is the chat box currently displaying text of some sort
     /// </summary>
     private bool mProcessingChat;
+
+    private bool mNeedEndOfLineMarker;
 
     /// <summary>
     /// If true, this is a conversation, if false this is a choice
@@ -87,6 +93,11 @@ public class ChatBox : MonoBehaviour
         mCurrentConvLine = 0;
         mCurrentLineChar = 0;
         mProcessingChat = true;
+
+        NextLineMarker.color = new Color(NextLineMarker.color.r,
+                                         NextLineMarker.color.g,
+                                         NextLineMarker.color.b,
+                                         0f);
     }
 
     /// <summary>
@@ -195,12 +206,20 @@ public class ChatBox : MonoBehaviour
                     SpeechTextComponent.text = mCurrentConversationData.Lines[mCurrentConvLine].Speech;
                 }
 
+                if (SpeechTextComponent.text.Length >= mCurrentConversationData.Lines[mCurrentConvLine].Speech.Length)
+                {
+                    NextLineMarker.transform.position = mLineMarkerStartPos;
+                    StartCoroutine(FadeLineMarkerGroup(0.0f, 1.0f, 0.5f));
+                    mLineMarkerTimer = 0;
+                }
+
                 return;
             }
             //If we're done with appending text, wait until the player has pressed something to advance text
             else if (!Input.anyKey)
             {
                 mNextLinePressed = false;
+                mNeedEndOfLineMarker = true;
 
                 if (!Service.Test().AutomaticEndOfLineSkip)
                 {
@@ -225,6 +244,9 @@ public class ChatBox : MonoBehaviour
             }
 
             mNextLinePressed = true;
+            mNeedEndOfLineMarker = false;
+
+            StartCoroutine(FadeLineMarkerGroup(1.0f, 0.0f, 0.25f));
 
             if (mCurrentConvLine < mCurrentConversationData.Lines.Count - 1)
             {
@@ -304,6 +326,7 @@ public class ChatBox : MonoBehaviour
         Service.Provide(this);
         AlphaGroup.alpha = 0;
         ButtonAlphaGroup.alpha = 0;
+        mLineMarkerStartPos = NextLineMarker.transform.position;
     }
 
     void Start()
@@ -322,6 +345,24 @@ public class ChatBox : MonoBehaviour
             else
             {
                 ProcessChoice();
+            }
+
+            if (mNeedEndOfLineMarker)
+            {
+                if (mLineMarkerTimer >= 0.60f)
+                {
+                    mLineMarkerTimer = 0.0f;
+                    if (Math.Abs(NextLineMarker.transform.position.y - mLineMarkerStartPos.y) < 0.01f)
+                    {
+                        NextLineMarker.transform.position = mLineMarkerStartPos + new Vector3(0, 10, 0);
+                    }
+                    else
+                    {
+                        NextLineMarker.transform.position = mLineMarkerStartPos;
+                    }
+                }
+
+                mLineMarkerTimer += Time.deltaTime;
             }
         }
     }
@@ -390,6 +431,27 @@ public class ChatBox : MonoBehaviour
             }
 
             SetButtons(true);
+        }
+    }
+    public IEnumerator FadeLineMarkerGroup(float startAlpha, float endAlpha, float duration)
+    {
+        if (Math.Abs(NextLineMarker.color.a - endAlpha) > 0.01f)
+        {
+            float elapsedTime = 0f;
+            float totalDuration = duration;
+
+            while (elapsedTime < totalDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float currentAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / totalDuration);
+
+                NextLineMarker.color = new Color(NextLineMarker.color.r,
+                                                 NextLineMarker.color.g,
+                                                 NextLineMarker.color.b, 
+                                                 currentAlpha);
+
+                yield return null;
+            }
         }
     }
 }
