@@ -25,6 +25,8 @@ public class UiManager : MonoBehaviour
 
     public float StartToIdleTime = 3.0f;
 
+    public bool DebugSkipTitleScreen;
+
     public CanvasGroup FaderForBackToOrigin;
 
     [HideInInspector]
@@ -48,9 +50,22 @@ public class UiManager : MonoBehaviour
 		//Get all canvas grounds in my childen, we want to fade them all out at the same time
         menuCanvasGroup = GetComponentsInChildren<CanvasGroup>();
 
-        var pos = Camera.main.transform.position;
-        pos.y = TitleScreenStartYPos;
-        Camera.main.transform.position = pos;
+        if (!DebugSkipTitleScreen)
+        {
+            var pos = Camera.main.transform.position;
+            pos.y = TitleScreenStartYPos;
+            Camera.main.transform.position = pos;
+        }
+    }
+
+    void Start()
+    {
+        if (DebugSkipTitleScreen)
+        {
+            SceneManager.UnloadSceneAsync("TitleScreen");
+            Camera.main.transform.position = new Vector3(0, 0, -10);
+            InGame = true;
+        }
     }
 
     void Update()
@@ -134,7 +149,7 @@ public class UiManager : MonoBehaviour
             }
             case Positioning.BackToOrigin:
             {
-                Camera.main.transform.position = new Vector3(0, 0, 0);
+                Camera.main.transform.position = new Vector3(0, 0, -10);
                 StartCoroutine(FadeOutScreenFader(1f, 0f));
                 mCurrentPosition = Positioning.Done;
                 break;
