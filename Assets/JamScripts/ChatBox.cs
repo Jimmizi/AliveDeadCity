@@ -183,7 +183,7 @@ public class ChatBox : MonoBehaviour
             var textComp = ChoiceButtons[i].GetComponentInChildren<Text>();
             if (textComp != null)
             {
-                textComp.text = String.Format("[{0}] " + choice.Choices[i].Text, i);
+                textComp.text = String.Format("[{0}] " + choice.Choices[i].Text, i+1);
             }
         }
 
@@ -247,30 +247,49 @@ public class ChatBox : MonoBehaviour
                 //If delay time is reached, append, if not add to the timer
                 if (mCharacterTimer >= TimeBetweenCharacters)
                 {
-                    mCharacterTimer = 0.0f;
-
-                    var nextChar = mCurrentConversationData.Lines[mCurrentConvLine].Speech
-                        .Substring(mCurrentLineChar++, 1);
-
-                    //Completely gets skipped
-                    if (nextChar.Equals("_"))
+                    if (mCurrentLineChar < mCurrentConversationData.Lines[mCurrentConvLine].Speech.Length)
                     {
-                        mUnderscorePauseTimer = UnderscorePauseTime;
-                        return;
-                    }
-                    else
-                    {
-                        //These only add to the pause timer, also get added
-                        if (nextChar.Equals(","))
+                        mCharacterTimer = 0.0f;
+                        bool italics;
+                        bool testItalics = mCurrentLineChar == 0;
+
+                        var nextChar = mCurrentConversationData.Lines[mCurrentConvLine].Speech
+                            .Substring(mCurrentLineChar++, 1);
+
+                        if (testItalics)
                         {
-                            mUnderscorePauseTimer = CommaPauseTime;
-                        }
-                        else if (nextChar.Equals("."))
-                        {
-                            mUnderscorePauseTimer = PeriodPauseTime;
+                            if (mCurrentConversationData.Lines[mCurrentConvLine].Speech.Substring(0, 3).Equals("[i]"))
+                            {
+                                SpeechTextComponent.fontStyle = FontStyle.Italic;
+                                mCurrentLineChar = 3;
+                                return;
+                            }
+                            else
+                            {
+                                SpeechTextComponent.fontStyle = FontStyle.Normal;
+                            }
                         }
 
-                        SpeechTextComponent.text += nextChar;
+                        //Completely gets skipped
+                        if (nextChar.Equals("_"))
+                        {
+                            mUnderscorePauseTimer = UnderscorePauseTime;
+                            return;
+                        }
+                        else
+                        {
+                            //These only add to the pause timer, also get added
+                            if (nextChar.Equals(","))
+                            {
+                                mUnderscorePauseTimer = CommaPauseTime;
+                            }
+                            else if (nextChar.Equals("."))
+                            {
+                                mUnderscorePauseTimer = PeriodPauseTime;
+                            }
+
+                            SpeechTextComponent.text += nextChar;
+                        }
                     }
                 }
                 else

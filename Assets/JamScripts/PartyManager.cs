@@ -16,10 +16,10 @@ public class PartyManager : MonoBehaviour
     public string[] MemberNames = new string[MAX_PARTY_MEMBERS];
     public Color[] MemberColours = new Color[MAX_PARTY_MEMBERS];
 
-    private bool[] mMemberAlive = new bool[MAX_PARTY_MEMBERS] { true, true, true };
+    private bool[] mMemberAlive = new bool[MAX_PARTY_MEMBERS] { false, false, false };
     private bool[] mExistanceFading = new bool[MAX_PARTY_MEMBERS] { false, false, false };
 
-    public int[] PartyHealth = new int[MAX_PARTY_MEMBERS] {DEFAULT_HEALTH, DEFAULT_HEALTH, DEFAULT_HEALTH};
+    public int[] PartyHealth = new int[MAX_PARTY_MEMBERS] {DEFAULT_HEALTH, 0, 0};
 
     public void KillParty()
     {
@@ -51,7 +51,7 @@ public class PartyManager : MonoBehaviour
 
         for (int i = 0; i < MAX_PARTY_MEMBERS; i++)
         {
-            PartyHealth[i] = mMemberAlive[i] ? 100 : 1;
+            PartyHealth[i] = mMemberAlive[i] ? 100 : 0;
             SetMemberAlpha(i, mMemberAlive[i] ? 1 : 0);
         }
 
@@ -153,7 +153,10 @@ public class PartyManager : MonoBehaviour
 
         for (int i = member * 2; i < (member * 2) + 2; i++)
         {
-            mPartyMemberMaterials[i].material.color = Color.red;
+            if (mMemberAlive[member])
+            {
+                mPartyMemberMaterials[i].material.color = Color.red;
+            }
         }
     }
 
@@ -163,7 +166,10 @@ public class PartyManager : MonoBehaviour
 
         for (int i = member * 2; i < (member * 2) + 2; i++)
         {
-            mPartyMemberMaterials[i].material.color = Color.white;
+            if (mMemberAlive[member])
+            {
+                mPartyMemberMaterials[i].material.color = Color.white;
+            }
         }
     }
 
@@ -173,6 +179,9 @@ public class PartyManager : MonoBehaviour
 
         for (int i = memberIndex * 2; i < (memberIndex * 2) + 2; i++)
         {
+            //if (!mMemberAlive[memberIndex])
+               // continue;
+
             var color = mPartyMemberMaterials[i].material.color;
 
             if (!setAsBlackColorInstead)
@@ -197,8 +206,17 @@ public class PartyManager : MonoBehaviour
 
     void SetPartyMembersAlpha(float alpha)
     {
+        int iMember = 0;
         for (var index = 0; index < mPartyMemberMaterials.Length; index++)
         {
+            if (index > 0 && index % 2 == 0)
+            {
+                iMember++;
+            }
+
+            if (!mMemberAlive[iMember] && Math.Abs(alpha) > 0.01f) 
+                continue;
+
             var member = mPartyMemberMaterials[index];
             float alphaToUse = alpha;
 

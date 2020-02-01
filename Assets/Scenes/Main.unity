@@ -366,52 +366,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2822177835986743688, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: ad82aa48950cf3a4ead51b1ca1f510db,
-        type: 3}
-    - target: {fileID: 2822177836360962580, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: ad82aa48950cf3a4ead51b1ca1f510db,
-        type: 3}
-    - target: {fileID: 2822177836897686269, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: ad82aa48950cf3a4ead51b1ca1f510db,
-        type: 3}
-    - target: {fileID: 2822177837057138484, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: UnderscorePauseTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2822177837782590565, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: ad82aa48950cf3a4ead51b1ca1f510db,
-        type: 3}
-    - target: {fileID: 2822177837837665689, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: ad82aa48950cf3a4ead51b1ca1f510db,
-        type: 3}
-    - target: {fileID: 3297157764081063299, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: ad82aa48950cf3a4ead51b1ca1f510db,
-        type: 3}
-    - target: {fileID: 3297157764081063299, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: m_FontData.m_LineSpacing
-      value: 0.85
-      objectReference: {fileID: 0}
     - target: {fileID: 6555881570960988136, guid: 42d0a418152e23b47867dfeada27e74e,
         type: 3}
       propertyPath: m_Camera
@@ -546,6 +500,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: MemberNames.Array.data[0]
+      value: Agent Scully
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: MemberNames.Array.data[2]
+      value: Kt-7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: MemberNames.Array.data[1]
+      value: Kay
+      objectReference: {fileID: 0}
     - target: {fileID: 7157549815013561468, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
       propertyPath: m_LocalPosition.x

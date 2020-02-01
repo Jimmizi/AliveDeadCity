@@ -29,6 +29,7 @@ public class JsonDataExecuter
 
     private void LoadEvent(string json)
     {
+        Debug.Log("Loading EventData: " + json);
         mQueuedEvents.Enqueue(JsonUtility.FromJson<EventData>(json));
 
         if (mQueuedEvents.Peek().Equals(new EventData()))
@@ -156,8 +157,10 @@ public class JsonDataExecuter
             }
         }
 
-        if(mCurrentEvent.SceneName.ToLower().Equals("credits"))
+        if(mCurrentEvent.SceneName.ToLower().Equals("credits")
+        || mCurrentEvent.SceneName.ToLower().Equals("failed"))
         {
+            Service.Party().KillParty();
             Service.UI().SetCameraFaderAlpha(false);
         }
         

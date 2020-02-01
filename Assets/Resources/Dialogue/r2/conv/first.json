@@ -1,0 +1,22 @@
+{
+    "Lines": 
+    [
+        {
+            "Speaker": "GLADOS",
+            "Speech": "Are you going to let him talk to you like that?"
+        },
+        {
+            "Speaker": "Agent Scully",
+            "Speech": "Shut up and play the mission report."
+        },
+        {
+            "Speaker": "GLADOS",
+            "Speech": "I'm not your phone. Ever watched The Matrix? I think you should ask more nicely..."
+        }
+    ],
+  
+    "EventsToFire": 
+    [
+      "r2/event/fire_intel_choice"
+    ]
+}
