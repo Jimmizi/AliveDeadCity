@@ -67,6 +67,8 @@ public class ChatBox : MonoBehaviour
 
     #endregion
 
+    private bool mNextLinePressed;
+
     /// <summary>
     /// Reset the conversation text box, and set the speaker for the current line about to be spoken
     /// </summary>
@@ -198,6 +200,8 @@ public class ChatBox : MonoBehaviour
             //If we're done with appending text, wait until the player has pressed something to advance text
             else if (!Input.anyKey)
             {
+                mNextLinePressed = false;
+
                 if (!Service.Test().AutomaticEndOfLineSkip)
                 {
                     return;
@@ -213,7 +217,15 @@ public class ChatBox : MonoBehaviour
                     mConvEndOfLineSkipTimer = 0;
                 }
             }
-            
+
+            //Waiting for anyKey to be released and this set to false
+            if (mNextLinePressed)
+            {
+                return;
+            }
+
+            mNextLinePressed = true;
+
             if (mCurrentConvLine < mCurrentConversationData.Lines.Count - 1)
             {
                 //Move to the next line, and reset the current line

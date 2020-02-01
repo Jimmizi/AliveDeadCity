@@ -285,8 +285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkipTitle: 1
-  InstantText: 1
-  AutomaticEndOfLineSkip: 1
+  InstantText: 0
+  AutomaticEndOfLineSkip: 0
 --- !u!4 &1315117423
 Transform:
   m_ObjectHideFlags: 0
