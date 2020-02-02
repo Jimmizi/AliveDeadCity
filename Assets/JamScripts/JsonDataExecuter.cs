@@ -160,7 +160,7 @@ public class JsonDataExecuter
         if(mCurrentEvent.SceneName.ToLower().Equals("credits")
         || mCurrentEvent.SceneName.ToLower().Equals("failed"))
         {
-            Service.Party().KillParty();
+            Service.Party().KillParty(true);
             Service.UI().SetCameraFaderAlpha(false);
         }
         

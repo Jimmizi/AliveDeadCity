@@ -13,6 +13,6 @@
   
     "EventsToFire": 
     [
-      "r3/enter"
+      "find_others/first_member/start"
     ]
 }

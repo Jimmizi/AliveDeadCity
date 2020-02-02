@@ -1,0 +1,14 @@
+{
+    "Lines": 
+    [
+        {
+            "Speaker": "",
+            "Speech": "Post save conv before going to the crystal room"
+        }
+    ],
+  
+    "EventsToFire": 
+    [
+        "find_others/finish/start"
+    ]
+}

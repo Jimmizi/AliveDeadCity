@@ -1,0 +1,14 @@
+{
+    "Lines": 
+    [
+        {
+            "Speaker": "",
+            "Speech": "You leave them. starting second without first"
+        }
+    ],
+  
+    "EventsToFire": 
+    [
+      "find_others/second_member_without_first/start"
+    ]
+}

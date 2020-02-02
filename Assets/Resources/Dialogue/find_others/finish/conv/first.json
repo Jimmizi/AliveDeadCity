@@ -1,0 +1,15 @@
+{
+    "Lines": 
+    [
+        {
+            "Speaker": "",
+            "Speech": "Find crystal conv first"
+        }
+    ],
+  
+    "EventsToFire": 
+    [
+        "find_others/finish/event/set_second_conv_room",
+        "find_others/finish/event/fire_second_conv"
+    ]
+}

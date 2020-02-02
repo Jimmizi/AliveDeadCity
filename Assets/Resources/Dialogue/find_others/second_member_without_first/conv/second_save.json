@@ -1,0 +1,16 @@
+{
+    "Lines": 
+    [
+        {
+            "Speaker": "",
+            "Speech": "saved member and first, going to post save conv"
+        }
+    ],
+  
+    "EventsToFire": 
+    [
+        "find_others/second_member_without_first/event/set_room",
+        "find_others/second_member_without_first/event/add_member_to_party",
+        "find_others/second_member_without_first/event/fire_save_third_conv"
+    ]
+}

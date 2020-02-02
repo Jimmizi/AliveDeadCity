@@ -1,0 +1,16 @@
+{
+    "Lines": 
+    [
+        {
+            "Speaker": "",
+            "Speech": "You save them. Starting fight scene"
+        }
+    ],
+  
+    "EventsToFire": 
+    [
+        "find_others/first_member/event/set_spider_room",
+        "find_others/first_member/event/add_member_to_party",
+        "find_others/first_member/event/fire_saved_member_spider_fight_conv"
+    ]
+}

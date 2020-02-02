@@ -1,0 +1,15 @@
+{
+    "Lines": 
+    [
+        {
+            "Speaker": "",
+            "Speech": "Pre save member one choice"
+        }
+    ],
+  
+    "EventsToFire": 
+    [
+        "find_others/first_member/event/set_member_room",
+        "find_others/first_member/event/fire_save_choice"
+    ]
+}

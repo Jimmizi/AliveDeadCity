@@ -1,0 +1,13 @@
+{
+    "Choices": 
+    [
+      {
+        "Text": "[Save Them]",
+        "EventFile": "find_others/second_member_without_first/event/fire_choice_save_conv"
+      },
+      {
+        "Text": "[Leave Them]",
+        "EventFile": "find_others/second_member_without_first/event/fire_choice_leave_conv"
+      }
+    ]
+}

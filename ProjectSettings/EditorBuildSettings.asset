@@ -33,6 +33,12 @@ EditorBuildSettings:
     path: Assets/Scenes/web_room.unity
     guid: b10af05e8a6567e428c0903b8f0acb86
   - enabled: 1
+    path: Assets/Scenes/web_room_first_member.unity
+    guid: 14a5669f30fc9e547a30873519bb8314
+  - enabled: 1
+    path: Assets/Scenes/cave_room_second_member.unity
+    guid: 27358d978a4233d4b91c17346f18889b
+  - enabled: 1
     path: Assets/Scenes/failed.unity
     guid: b39bf49b1ed6def4ab5585f874b29f13
   - enabled: 1

@@ -1,0 +1,14 @@
+{
+    "Lines": 
+    [
+        {
+            "Speaker": "",
+            "Speech": "Left second member, going to finish"
+        }
+    ],
+  
+    "EventsToFire": 
+    [
+      "find_others/finish/start"
+    ]
+}

@@ -24,8 +24,12 @@ public class PartyManager : MonoBehaviour
 
     public int[] PartyHealth = new int[MAX_PARTY_MEMBERS] {DEFAULT_HEALTH, 0, 0};
 
-    public void KillParty()
+    private bool mKillPartyForEndScreen;
+
+    public void KillParty(bool isEndScreen = false)
     {
+        mKillPartyForEndScreen = isEndScreen;
+
         for (int i = 0; i < MAX_PARTY_MEMBERS; i++)
         {
             PartyHealth[i] = 0;
@@ -71,7 +75,11 @@ public class PartyManager : MonoBehaviour
             {
                 if (mMemberAlive[i] && !mExistanceFading[i])
                 {
-                    SetMemberDeadColor(i);
+                    if (!mKillPartyForEndScreen)
+                    {
+                        SetMemberDeadColor(i);
+                    }
+
                     StartCoroutine(FadePartyMember(i, 1.0f, 0.0f, 1.0f));
                     mMemberAlive[i] = false;
                 }

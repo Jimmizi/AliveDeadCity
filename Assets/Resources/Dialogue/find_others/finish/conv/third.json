@@ -1,0 +1,14 @@
+{
+    "Lines": 
+    [
+        {
+            "Speaker": "",
+            "Speech": "Find crystal conv third"
+        }
+    ],
+  
+    "EventsToFire": 
+    [
+        "event_win"
+    ]
+}
