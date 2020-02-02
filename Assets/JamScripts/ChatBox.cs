@@ -114,6 +114,25 @@ public class ChatBox : MonoBehaviour
         }
         else
         {
+            var namesOther = Service.Party().OtherNames;
+            var colorsOther = Service.Party().OtherColours;
+            bool foundAnOtherColour = false;
+
+            for (var i = 0; i < namesOther.Count; i++)
+            {
+                if (SpeakerTextComponent.text.ToLower().Equals(namesOther[i].ToLower()))
+                {
+                    foundAnOtherColour = true;
+                    SpeakerTextComponent.color = colorsOther[i];
+                    break;
+                }
+            }
+
+            if (!foundAnOtherColour)
+            {
+                SpeakerTextComponent.color = Color.white;
+            }
+
             //No speaker name
             Service.Party().ResetSpeakerMembers();
         }

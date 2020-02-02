@@ -3,47 +3,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMOD.Studio;
+using FMOD.Studio;
+using FMODUnity;
 
 public class SoundManager : MonoBehaviour
 {
-    [Serializable]
-    public struct SoundInstance
+    
+
+    private FMOD.Studio.EventInstance menuMusicInstance;
+    private FMOD.Studio.EventInstance gameLoopInstance;
+
+    [FMODUnity.EventRef] 
+    public string MenuMusicEvent;
+
+    [FMODUnity.EventRef]
+    public string GameLoopMusicEvent;
+
+    void Awake()
     {
-        [FMODUnity.EventRef]
-        public string EventName;
+        Service.Provide(this);
 
-        [HideInInspector]
-        public FMOD.Studio.EventInstance instance;
-
-        public void Create()
-        {
-            instance = FMODUnity.RuntimeManager.CreateInstance(EventName);
-        }
-
-        public void Start()
-        {
-            instance.start();
-        }
-
-        public void Stop(bool fade = true, bool kill = false)
-        {
-            instance.stop(fade ? FMOD.Studio.STOP_MODE.ALLOWFADEOUT : FMOD.Studio.STOP_MODE.IMMEDIATE);
-
-            if (kill)
-            {
-                instance.release();
-            }
-        }
     }
 
-    public List<SoundInstance> mSoundInstances = new List<SoundInstance>();
+    public void PlayMenuMusic()
+    {
+        menuMusicInstance = FMODUnity.RuntimeManager.CreateInstance(MenuMusicEvent);
+        menuMusicInstance.start();
+    }
+
+    public void StopMenuMusic()
+    {
+        menuMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+    public void PlayGameLoopMusic()
+    {
+        gameLoopInstance = FMODUnity.RuntimeManager.CreateInstance(GameLoopMusicEvent);
+        gameLoopInstance.start();
+    }
+
+    public void StopGameLoopMusic()
+    {
+        gameLoopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
 
     void OnApplicationQuit()
     {
-        foreach (var sound in mSoundInstances)
+        if (menuMusicInstance.isValid())
         {
-            sound.Stop(false, true);
+            menuMusicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            menuMusicInstance.release();
+            menuMusicInstance.clearHandle();
+        }
 
+        if (gameLoopInstance.isValid())
+        {
+            gameLoopInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            gameLoopInstance.release();
+            gameLoopInstance.clearHandle();
         }
     }
 

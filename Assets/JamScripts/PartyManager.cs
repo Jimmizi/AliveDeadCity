@@ -13,6 +13,9 @@ public class PartyManager : MonoBehaviour
     private Renderer[] mPartyMemberMaterials;
     private float[] mMaterialOriginalAlpha;
 
+    public List<string> OtherNames = new List<string>();
+    public List<Color> OtherColours = new List<Color>();
+
     public string[] MemberNames = new string[MAX_PARTY_MEMBERS];
     public Color[] MemberColours = new Color[MAX_PARTY_MEMBERS];
 
