@@ -78,6 +78,5 @@ MonoBehaviour:
   - Master
   Banks:
   - music
-  - UISFX
   BanksToLoad: []
   LiveUpdatePort: 9264

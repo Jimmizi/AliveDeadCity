@@ -58,6 +58,8 @@ public class ChatBox : MonoBehaviour
     /// </summary>
     private bool mIsConversation;
 
+    private bool mTypingLoopPlaying;
+
     public bool Processing => mProcessingChat;
     public bool HasValidChat => mCurrentConversationData != null || mCurrentChoiceData != null;
 
@@ -242,10 +244,29 @@ public class ChatBox : MonoBehaviour
         {
             StartCoroutine(FadeChatGroup(1.0f, 0.0f, 0.5f));
             Service.Party().ResetSpeakerMembers();
+            StopTypingSoundIfPossible();
         }
         else
         {
             StartCoroutine(FadeChoiceGroup(1.0f, 0.0f, 0.5f));
+        }
+    }
+
+    void StartTypingSoundIfPossible()
+    {
+        if (!mTypingLoopPlaying)
+        {
+            Service.Audio().PlayTypingLoop();
+            mTypingLoopPlaying = true;
+        }
+    }
+
+    void StopTypingSoundIfPossible()
+    {
+        if (mTypingLoopPlaying)
+        {
+            Service.Audio().StopTypingLoop();
+            mTypingLoopPlaying = false;
         }
     }
 
@@ -266,6 +287,8 @@ public class ChatBox : MonoBehaviour
                 //If delay time is reached, append, if not add to the timer
                 if (mCharacterTimer >= TimeBetweenCharacters)
                 {
+                    StartTypingSoundIfPossible();
+
                     if (mCurrentLineChar < mCurrentConversationData.Lines[mCurrentConvLine].Speech.Length)
                     {
                         mCharacterTimer = 0.0f;
@@ -292,6 +315,7 @@ public class ChatBox : MonoBehaviour
                         //Completely gets skipped
                         if (nextChar.Equals("_"))
                         {
+                            StopTypingSoundIfPossible();
                             mUnderscorePauseTimer = UnderscorePauseTime;
                             return;
                         }
@@ -304,6 +328,7 @@ public class ChatBox : MonoBehaviour
                             }
                             else if (nextChar.Equals("."))
                             {
+                                StopTypingSoundIfPossible();
                                 mUnderscorePauseTimer = PeriodPauseTime;
                             }
 
@@ -325,6 +350,7 @@ public class ChatBox : MonoBehaviour
 
                 if (mLineComplete)
                 {
+                    StopTypingSoundIfPossible();
                     NextLineMarker.transform.position = mLineMarkerStartPos;
                     StartCoroutine(FadeLineMarkerGroup(0.0f, 1.0f, 0.5f));
                     mLineMarkerTimer = 0;

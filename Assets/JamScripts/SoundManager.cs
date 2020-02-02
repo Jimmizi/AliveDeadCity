@@ -12,12 +12,16 @@ public class SoundManager : MonoBehaviour
 
     private FMOD.Studio.EventInstance menuMusicInstance;
     private FMOD.Studio.EventInstance gameLoopInstance;
+    private FMOD.Studio.EventInstance typingLoopInstance;
 
     [FMODUnity.EventRef] 
     public string MenuMusicEvent;
 
     [FMODUnity.EventRef]
     public string GameLoopMusicEvent;
+
+    [FMODUnity.EventRef]
+    public string TypingLoopEvent;
 
     void Awake()
     {
@@ -47,6 +51,17 @@ public class SoundManager : MonoBehaviour
         gameLoopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
+    public void PlayTypingLoop()
+    {
+        typingLoopInstance = FMODUnity.RuntimeManager.CreateInstance(TypingLoopEvent);
+        typingLoopInstance.start();
+    }
+
+    public void StopTypingLoop()
+    {
+        typingLoopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
     void OnApplicationQuit()
     {
         if (menuMusicInstance.isValid())
@@ -61,6 +76,13 @@ public class SoundManager : MonoBehaviour
             gameLoopInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             gameLoopInstance.release();
             gameLoopInstance.clearHandle();
+        }
+
+        if (typingLoopInstance.isValid())
+        {
+            typingLoopInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            typingLoopInstance.release();
+            typingLoopInstance.clearHandle();
         }
     }
 

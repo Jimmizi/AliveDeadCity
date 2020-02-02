@@ -250,10 +250,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669b591d4f23b0a42b23c65af58cefd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkipTitle: 1
-  InstantText: 1
-  AutomaticEndOfLineSkip: 1
-  IgnoreTextPauses: 1
+  SkipTitle: 0
+  InstantText: 0
+  AutomaticEndOfLineSkip: 0
+  IgnoreTextPauses: 0
 --- !u!4 &1315117423
 Transform:
   m_ObjectHideFlags: 0
@@ -403,6 +403,11 @@ PrefabInstance:
         type: 3}
       propertyPath: GameLoopMusicEvent
       value: event:/Music/music1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368963237214745626, guid: 42d0a418152e23b47867dfeada27e74e,
+        type: 3}
+      propertyPath: TypingLoopEvent
+      value: event:/Sounds/typing_loop
       objectReference: {fileID: 0}
     - target: {fileID: 6555881570960988136, guid: 42d0a418152e23b47867dfeada27e74e,
         type: 3}
