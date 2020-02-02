@@ -379,36 +379,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1368963237214745626, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: mSoundInstances.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1368963237214745626, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: mSoundInstances.Array.data[0].EventName
-      value: event:/Music/menu_music
-      objectReference: {fileID: 0}
-    - target: {fileID: 1368963237214745626, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: mSoundInstances.Array.data[0]
-      value: event:/Music/menu_music
-      objectReference: {fileID: 0}
-    - target: {fileID: 1368963237214745626, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: MenuMusicEvent
-      value: event:/Music/menu_music
-      objectReference: {fileID: 0}
-    - target: {fileID: 1368963237214745626, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: GameLoopMusicEvent
-      value: event:/Music/music1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1368963237214745626, guid: 42d0a418152e23b47867dfeada27e74e,
-        type: 3}
-      propertyPath: TypingLoopEvent
-      value: event:/Sounds/typing_loop
-      objectReference: {fileID: 0}
     - target: {fileID: 6555881570960988136, guid: 42d0a418152e23b47867dfeada27e74e,
         type: 3}
       propertyPath: m_Camera
@@ -545,78 +515,78 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
-      propertyPath: OtherNames.Array.size
-      value: 2
+      propertyPath: MemberColours.Array.data[0].r
+      value: 0.31764707
       objectReference: {fileID: 0}
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
-      propertyPath: OtherColours.Array.size
-      value: 2
+      propertyPath: MemberColours.Array.data[0].g
+      value: 0.7254902
       objectReference: {fileID: 0}
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
-      propertyPath: MemberNames.Array.data[0]
-      value: Agent Scully
+      propertyPath: MemberColours.Array.data[0].b
+      value: 0.8588236
       objectReference: {fileID: 0}
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
-      propertyPath: MemberNames.Array.data[2]
-      value: Kt-7
+      propertyPath: MemberColours.Array.data[1].r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
-      propertyPath: MemberNames.Array.data[1]
-      value: Kay
+      propertyPath: MemberColours.Array.data[1].g
+      value: 0.8470589
       objectReference: {fileID: 0}
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
-      propertyPath: OtherNames.Array.data[0]
-      value: COMMAND
-      objectReference: {fileID: 0}
-    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
-        type: 3}
-      propertyPath: OtherNames.Array.data[1]
-      value: GLADOS
-      objectReference: {fileID: 0}
-    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
-        type: 3}
-      propertyPath: OtherColours.Array.data[0].r
-      value: 0.7735849
-      objectReference: {fileID: 0}
-    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
-        type: 3}
-      propertyPath: OtherColours.Array.data[0].g
+      propertyPath: MemberColours.Array.data[1].b
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
-      propertyPath: OtherColours.Array.data[0].b
-      value: 0.014067749
+      propertyPath: MemberColours.Array.data[2].r
+      value: 0.76470596
       objectReference: {fileID: 0}
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
-      propertyPath: OtherColours.Array.data[0].a
-      value: 1
+      propertyPath: MemberColours.Array.data[2].g
+      value: 0.7960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: MemberColours.Array.data[2].b
+      value: 0.8588236
       objectReference: {fileID: 0}
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
       propertyPath: OtherColours.Array.data[1].r
-      value: 0.6627219
+      value: 0.8000001
       objectReference: {fileID: 0}
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
       propertyPath: OtherColours.Array.data[1].g
-      value: 0.1981132
+      value: 0.14117648
       objectReference: {fileID: 0}
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
       propertyPath: OtherColours.Array.data[1].b
-      value: 1
+      value: 0.52156866
       objectReference: {fileID: 0}
     - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}
-      propertyPath: OtherColours.Array.data[1].a
-      value: 1
+      propertyPath: OtherColours.Array.data[0].r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherColours.Array.data[0].g
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665757149935588927, guid: 1838ae3f1758a7241abba2bf07d57bf6,
+        type: 3}
+      propertyPath: OtherColours.Array.data[0].b
+      value: 0.16248712
       objectReference: {fileID: 0}
     - target: {fileID: 7157549815013561468, guid: 1838ae3f1758a7241abba2bf07d57bf6,
         type: 3}

@@ -637,10 +637,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b1197600b594145bf6c7c78e5d11fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OtherNames:
+  - COMMAND
+  - GLADOS
+  OtherColours:
+  - {r: 0.7735849, g: 0, b: 0.014067749, a: 1}
+  - {r: 0.6627219, g: 0.1981132, b: 1, a: 1}
   MemberNames:
-  - Player
-  - Member1
-  - Member2
+  - Agent Scully
+  - Yuu
+  - Kt-7
   MemberColours:
   - {r: 0, g: 0.8490566, b: 0.08890642, a: 1}
   - {r: 0, g: 0.8962264, b: 0.86021286, a: 1}

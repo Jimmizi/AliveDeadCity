@@ -3,11 +3,11 @@
     [
         {
             "Speaker": "Agent Scully",
-            "Speech": "Just trying to get some fresh air Command."
+            "Speech": "Just trying to get some fresh air, Command."
         },
         {
             "Speaker": "COMMAND",
-            "Speech": "So you breath poison now? Glados is the only thing keeping you from kicking the bucket. Are you a deserter Scully?"
+            "Speech": "Did I hear you say 'Air' soldier? Your file didn't mention 'Breathes Poison', nor 'Is a deserter'. Would you like me to update that for you?"
         },
         {
             "Speaker": "Agent Scully",
@@ -15,7 +15,7 @@
         },
         {
             "Speaker": "COMMAND",
-            "Speech": "That's what I like to hear. Good. __I'm sending it the mission report.\n\n_Read up, Scully."
+            "Speech": "That's what I like to hear. Good. I'm sending it the mission report.\n\n_Read up, Scully."
         }
     ],
   

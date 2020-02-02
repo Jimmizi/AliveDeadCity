@@ -162,6 +162,9 @@ public class JsonDataExecuter
         {
             Service.Party().KillParty(true);
             Service.UI().SetCameraFaderAlpha(false);
+
+            Service.Audio().StopGameLoopMusic();
+            Service.Audio().PlayMenuMusic();
         }
         
         //Make sure to unload the last scene

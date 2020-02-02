@@ -3,15 +3,15 @@
     [
         {
             "Speaker": "",
-            "Speech": "[i]What? No way. She's a machine! Humanity will never submit to this."
+            "Speech": "[i]What? No way. She's a machine! _Humanity will never submit to this."
         },
         {
             "Speaker": "",
-            "Speech": "[i]She does control the air system though...\nShe wouldn't.__\nShe wouldn't right?_\nWouldn't hold my breath on it."
+            "Speech": "[i]She does control the air system though...\nShe wouldn't.__\nShe wouldn't right?__\nWouldn't hold my breath on it."
         },
         {
             "Speaker": "Agent Scully",
-            "Speech": "*Humf* Would you play the mission report?"
+            "Speech": "*Humf* _Would you play the mission report?"
         },
         {
             "Speaker": "GLADOS",
@@ -19,7 +19,7 @@
         },
         {
             "Speaker": "Agent Scully",
-            "Speech": "..._Please."
+            "Speech": "...Please."
         },
         {
             "Speaker": "GLADOS",

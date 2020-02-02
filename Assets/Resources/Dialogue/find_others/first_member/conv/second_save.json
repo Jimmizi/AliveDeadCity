@@ -3,7 +3,23 @@
     [
         {
             "Speaker": "",
-            "Speech": "You save them. Starting fight scene"
+            "Speech": "[i]Creeping up to the spider, you reach it as it readies to stab the cocoon. Shoving it away with your - Glados' - super strength, you unwrap Yuu."
+        },
+        {
+            "Speaker": "GLADOS",
+            "Speech": "Ugh, I can't deal with her. Muting external sound for myself, your hearing is all yours, Boss."
+        },
+        {
+            "Speaker": "Yuu",
+            "Speech": "Oh my gosh that was sooo horrible. _Thanks Scull for the assist! I just wanna get out of here already."
+        },
+        {
+            "Speaker": "Agent Scully",
+            "Speech": "First of all, it's Scully, not Scull. Second, we still need to deal with that."
+        },
+        {
+            "Speaker": "",
+            "Speech": "[i]You point and Yuu turns in that direction to see an audibly angry giant spider racing towards the both of you."
         }
     ],
   

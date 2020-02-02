@@ -39,6 +39,8 @@ public class UiManager : MonoBehaviour
     private ShowPanels showPanels;										//Reference to ShowPanels script on UI GameObject, to show and hide panels
     private CanvasGroup[] menuCanvasGroup;
 
+    private float mTimerBeforeMenuLaunch;
+
     public void SetCameraFaderAlpha(bool active)
     {
         foreach (var fader in CameraFaderObjects)
@@ -85,6 +87,14 @@ public class UiManager : MonoBehaviour
 
     void Update()
     {
+
+        if (mTimerBeforeMenuLaunch < 1.25f)
+        {
+            mTimerBeforeMenuLaunch += Time.deltaTime;
+            return;
+        }
+
+
         if (InGame)
         {
             return;
@@ -104,7 +114,7 @@ public class UiManager : MonoBehaviour
         {
             case Positioning.FadeIn:
             {
-                StartCoroutine(FadeOutScreenFader(1f, 0f));
+                StartCoroutine(FadeOutScreenFader(1f, 0f, true, 4.0f));
                 mCurrentPosition = Positioning.StartToIdle;
                 break;
             }
@@ -222,12 +232,12 @@ public class UiManager : MonoBehaviour
         StartCoroutine(FadeOutScreenFader(1f, 0f, false));
     }
 
-    public IEnumerator FadeOutScreenFader(float startAlpha, float endAlpha, bool fadeCharactersIn = true)
+    public IEnumerator FadeOutScreenFader(float startAlpha, float endAlpha, bool fadeCharactersIn = true, float fadeTime = 1.0f)
     {
         mScreenIsFading = true;
 
         float elapsedTime = 0f;
-        float totalDuration = 1.0f;
+        float totalDuration = fadeTime;
         bool fadedInCharacters = false;
 
         while (elapsedTime < totalDuration)

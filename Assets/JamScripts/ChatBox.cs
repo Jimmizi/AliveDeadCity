@@ -28,9 +28,9 @@ public class ChatBox : MonoBehaviour
     /// </summary>
     public float TimeBetweenCharacters = 0.1f;
 
-    public float UnderscorePauseTime = 0.5f;
-    public float CommaPauseTime = 0.1f;
-    public float PeriodPauseTime = 0.25f;
+    public float UnderscorePauseTime = 0.75f;
+    public float CommaPauseTime = 0.25f;
+    public float PeriodPauseTime = 0.5f;
 
     #endregion
 
@@ -330,6 +330,26 @@ public class ChatBox : MonoBehaviour
                             {
                                 StopTypingSoundIfPossible();
                                 mUnderscorePauseTimer = PeriodPauseTime;
+
+                                //if there are more characters
+                                if (mCurrentLineChar + 1 < mCurrentConversationData.Lines[mCurrentConvLine].Speech.Length
+                                    && mCurrentLineChar > 0)
+                                {
+                                    //If there isn't a period in front or behind us, double the length of the pause
+                                    //  don't want to make "..." super long
+                                    if (!mCurrentConversationData.Lines[mCurrentConvLine].Speech
+                                        .Substring(mCurrentLineChar, 1).Equals(".")
+                                    && !mCurrentConversationData.Lines[mCurrentConvLine].Speech
+                                        .Substring(mCurrentLineChar-1, 1).Equals("."))
+                                    {
+                                        mUnderscorePauseTimer += PeriodPauseTime;
+                                    }
+                                }
+                            }
+                            else if (nextChar.Equals("!") || nextChar.Equals("?"))
+                            {
+                                StopTypingSoundIfPossible();
+                                mUnderscorePauseTimer = PeriodPauseTime * 2;
                             }
 
                             SpeechTextComponent.text += nextChar;

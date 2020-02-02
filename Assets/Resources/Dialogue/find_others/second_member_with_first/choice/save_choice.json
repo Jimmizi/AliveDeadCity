@@ -2,11 +2,11 @@
     "Choices": 
     [
       {
-        "Text": "[Save Them]",
+        "Text": "[Save Kt-7]",
         "EventFile": "find_others/second_member_with_first/event/fire_choice_save_conv"
       },
       {
-        "Text": "[Leave Them]",
+        "Text": "[Leave Kt-7]",
         "EventFile": "find_others/second_member_with_first/event/fire_choice_leave_conv"
       }
     ]
